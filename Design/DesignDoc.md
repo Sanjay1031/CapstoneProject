@@ -1,14 +1,14 @@
 # Design Document
 
-## _AmazonBudgetService_ Design
+## _BudgetMe_ App Design
 
 ## 1. Problem Statement
 
-Amazon Elite Budget Service is a highly advanced budgeting app that will enable users to have more control over their money/expenditures.
+BudgetMe is a highly advanced budgeting/expense tracking app that will enable users to have more control over their money/expenditures.
 Users can currently view their expenses by visiting the associated website/app for their card provider. However, users have requested that their expenditures and budget plans should be presented in a more streamlined, informative manner.
 
-This design document describes the main use cases and functionality of Amazon Elite Budget Service, a new, native AWS service that will provide users a cleaner, more informative means to view expenditures and budget goals.
-It is designed to interact with the Expense Management Client(which allows users to view expenditure information based on assigned tags and budget information based on their set goal).
+This design document describes the main use cases and functionality of BudgetMe, a new service that implements AWS technologies and will provide users a cleaner, more informative means to view expenditures and budget goals.
+It is designed to interact with a front end component (which allows users to view expenditure information based on assigned tags and budget information based on their set goal).
 
 
 ## 2. Top Questions to Resolve in Review
@@ -16,8 +16,8 @@ It is designed to interact with the Expense Management Client(which allows users
 _List the most important questions you have about your design, or things that you are still debating internally that you might like help working through._
 
 1. Can we search expenses by date? 
-2. Would date need to be a string rather than a ZoneDateTime
-3. Payments through this API is not in scope
+2. Would date need to be a string rather than a ZoneDateTime?
+3. Would status need to be string rather than boolean?
 4. Does the budget model need more variables? 
 
 
@@ -30,22 +30,20 @@ U1. As a user, I want to be able to view all my expenditures
 U2. As a user, I want to be able to view my expenditures based on their associated tag (EX. food, utilities, rent, personal, loan).
 
 U3. As a user, I want to be able to create a new expenditure and then add the expense plus the associated tag (Reason for expense).
+
 U4. As a user, I want to be able to update an expenditure’s information if changes arise.
 
 U5. As a user, I want to be able to view a list of all my expenditures sorted by highest to lowest expense.
 
 U6. As a user, I want to be able to view a list of all my expenditures sorted by date (newest - oldest)
 
-U6. As a user, I want to be able to get a specific day’s worth of expenses.
+U6. As a user, I want to be able to get expenses for a specified time period (day, week, month, and year).
 
-U7. As a user, I want to be able to get a specific week’s worth of expenses.
+U7. As a user, I want to be able to view an informative graph or chart that depicts my expenses for a certain time period. 
 
-U8. As a user, I want to be able to get a specific month’s worth of expenses.
+U8. As a user, I want to be able to view whether I have achieved my budget goal for set time period.
 
-U9. As a user, I want to be able to get a specific year’s worth of expenses.
-
-U10. As a user, I want to be able to view a graph or chart that depicts my expenses for a certain period in an informative manner.
-
+U9. As a user, I want to be able to view the remaining balance in my budget after my expenses for specified time period. 
 
 
 ## 4. Project Scope
@@ -66,8 +64,9 @@ _Which parts of the problem defined in Sections 1 and 2 will you solve with this
 
 _Based on your problem description in Sections 1 and 2, are there any aspects you are not planning to solve? Do potential expansions or related problems occur to you that you want to explicitly say you are not worrying about now? Feel free to put anything here that you think your team can't accomplish in the unit, but would love to do with more time._
 
-* This API does not link with any card provider or bank provider so
-* This API does not facilitate payment. It is simply a means of retrieving data in a meaningful manner.
+* Displaying expenditure and budget information in a graphical representation 
+* Rolling over remaining budget information for the next term 
+* Calculating balance remaining in budget after expenses  
 
 
 
@@ -76,9 +75,9 @@ _Based on your problem description in Sections 1 and 2, are there any aspects yo
 
 _Describe broadly how you are proposing to solve for the requirements you described in Section 2. This may include class diagram(s) showing what components you are planning to build. You should argue why this architecture (organization of components) is reasonable. That is, why it represents a good data flow and a good separation of concerns. Where applicable, argue why this architecture satisfies the stated requirements._
 
-This initial iteration will provide the minimum viable product (MVP) including adding, retrieving, and updating an employee contact information for the admin role.
+This initial iteration will provide the minimum viable product (MVP) including adding, retrieving, and updating an expense information for the user role.
 
-We will use API Gateway and Lambda to create 5 endpoints (GetExpense, Add/UpdateExpense, GetTaggedExpense, GetBudget, Add/UpdateBudget) that will handle the creation, updation, and retrieval of expense and budget information to satisfy our requirements.
+We will use API Gateway and Lambda to create 6 endpoints (GetExpense, Add/UpdateExpense, GetTaggedExpense, GetBudget, Add/UpdateBudget, BudgetStatus) that will handle the creation, update, and retrieval of expense and budget information to satisfy our requirements.
 
 We will store expense and budget information in a table in DynamoDB.
 
@@ -93,13 +92,6 @@ Amazon Elite Budget Service will also provide a web interface for users. A main 
 
 _Define the data models your service will expose in its responses via your *`-Model`* package. These will be equivalent to the *`PlaylistModel`* and *`SongModel`* from the Unit 3 project._
 
-
-
-
-
-
-
-
 ```
 // ExpenseModel
 
@@ -113,6 +105,7 @@ ZonedDateTime expenseDate;
 
 String budgetId;
 String targetAmount; 
+Boolean status; 
 ZonedDateTime date;
 
 ```
@@ -133,7 +126,7 @@ ZonedDateTime date;
 
 ## 6.4. GetTaggedExpense Endpoint
 
-* Accepts `GET` requests to `/employee/:tag`
+* Accepts `GET` requests to `/expense/:tag`
 * Returns all the expenses for the requested tag in the ExpenseModel format.
     * If there is no department found, will throw a
       `InvalidDepartmentException`
@@ -187,6 +180,12 @@ ZonedDateTime date;
 * If the budgetID is not found, will throw a   
   `BudgetNotFoundException`
 
+## 6.6. _BudgetStatus Endpoint_
+
+* Accepts `GET` requests to `/budget/:date`
+* Accepts a date and returns the status (achieved/ not achieved) of specified budget.
+  * If the given date is not found, will throw a
+    `BudgetNotFoundException`
 
 
 
@@ -200,12 +199,13 @@ _Define the DynamoDB tables you will need for the data your service will use. It
   expenseName // string
   expenseAmount // string
   tag // string (GSI Partition Key)
-  Date // partition key, string
+  date // partition key, string
 
 * BudgetTable
   budgetId //  string
   targetAmount // string
-  Date // partition key, string
+  date // partition key, string
+  status // boolean
 
 
 
