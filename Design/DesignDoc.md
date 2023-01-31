@@ -41,9 +41,13 @@ U6. As a user, I want to be able to get expenses for a specified time period (da
 
 U7. As a user, I want to be able to view an informative graph or chart that depicts my expenses for a certain time period. 
 
-U8. As a user, I want to be able to view whether I have achieved my budget goal for set time period.
+U8. As a user, I want to be able to create a new budget and then add a set target amount for a specified time period (day, week, month, and year). 
 
-U9. As a user, I want to be able to view the remaining balance in my budget after my expenses for specified time period. 
+U9. As a user, I want to be able to update a budget's information if changes arise.
+
+U10. As a user, I want to be able to view whether I have achieved my budget goal for set time period.
+
+U11. As a user, I want to be able to view the remaining balance in my budget after my expenses for specified time period. 
 
 
 ## 4. Project Scope
@@ -57,6 +61,7 @@ _Clarify which parts of the problem you intend to solve. It helps reviewers know
 _Which parts of the problem defined in Sections 1 and 2 will you solve with this design? This should include the base functionality of your product. What pieces are required for your product to work?_
 
 * Adding, updating, and retrieving/viewing expenditure information
+* Adding, updating, and retrieving/viewing budget information
 * User specific data (multiple users allowed)
 * Retrieving expenditure information based on tags
 
@@ -95,7 +100,7 @@ _Define the data models your service will expose in its responses via your *`-Mo
 ```
 // ExpenseModel
 
-String expenseId;
+String expenseId; (Will be date converted to string)
 String expenseName;
 String expenseAmount; 
 String tag;
@@ -103,7 +108,7 @@ ZonedDateTime expenseDate;
 
 // BudgetModel
 
-String budgetId;
+String budgetId; (Will be date converted to string)
 String targetAmount; 
 Boolean status; 
 ZonedDateTime date;
@@ -112,7 +117,7 @@ ZonedDateTime date;
 
 ## 6.2. _GetExpense Endpoint_
 
-* Accepts `GET` requests to `/expense/:date`
+* Accepts `GET` requests to `/expense/:expenseId`
 * Accepts an expenseID and returns the corresponding ExpenseModel.
     * If the given expenseID is not found, will throw a
       `ExpenditureNotFoundException`
@@ -126,14 +131,14 @@ ZonedDateTime date;
 
 ## 6.4. GetTaggedExpense Endpoint
 
-* Accepts `GET` requests to `/expense/:tag`
+* Accepts `GET` requests to `/expense/tags/:tag`
 * Returns all the expenses for the requested tag in the ExpenseModel format.
     * If there is no department found, will throw a
       `InvalidDepartmentException`
 
 ## 6.5. _UpdateExpense Endpoint_
 
-* Accepts `PUT` requests to `/expense/:date`
+* Accepts `PUT` requests to `/expense/:expenseId`
 * Accepts data to update an expense including an updated
   expenseName, expenseAmount, tag, and date. Returns the updated expense.
 * If the expenseID or name is not found, will throw a   
@@ -145,7 +150,7 @@ ZonedDateTime date;
 
 ## 6.6. _AddExpense Endpoint_
 
-* Accepts `POST` requests to `/expense/:date`
+* Accepts `POST` requests to `/expense/:expenseId`
 * Accepts data to create a new expenditure which includes the
   expenseId, expenseName, expenseAmount, tag, and date. Returns the new   
   expense.
@@ -156,14 +161,14 @@ ZonedDateTime date;
 
 ## 6.7. _GetBudget Endpoint_
 
-* Accepts `GET` requests to `/budget/:date`
-* Accepts a date and returns the corresponding BudgetModel.
+* Accepts `GET` requests to `/budget/:budgetId`
+* Accepts a budgetId and returns the corresponding BudgetModel.
     * If the given date is not found, will throw a
       `BudgetNotFoundException`
 
 ## 6.6. _AddBudget Endpoint_
 
-* Accepts `POST` requests to `/budget/:date`
+* Accepts `POST` requests to `/budget/:budgetId`
 * Accepts data to create a new budget which includes the
   budgetId, targetAmount,and date. Returns the new   
   budget.
@@ -174,7 +179,7 @@ ZonedDateTime date;
 
 ## 6.5. _UpdateBudget Endpoint_
 
-* Accepts `PUT` requests to `/budget/:date`
+* Accepts `PUT` requests to `/budget/:budgetId`
 * Accepts data to update a budget including an updated
   targetAmount,and date. Returns the updated budget.
 * If the budgetID is not found, will throw a   
@@ -182,8 +187,9 @@ ZonedDateTime date;
 
 ## 6.6. _BudgetStatus Endpoint_
 
-* Accepts `GET` requests to `/budget/:date`
-* Accepts a date and returns the status (achieved/ not achieved) of specified budget.
+* Accepts `GET` requests to `/budget/:budgetId`
+* Accepts a budgetId and returns the status (achieved/ not achieved) of specified budget 
+  by querying the expenses and determining if it is less than or equal to the set budget.  
   * If the given date is not found, will throw a
     `BudgetNotFoundException`
 
@@ -202,9 +208,9 @@ _Define the DynamoDB tables you will need for the data your service will use. It
   date // partition key, string
 
 * BudgetTable
-  budgetId //  string
+  budgetId // partition key, string
   targetAmount // string
-  date // partition key, string
+  date // string
   status // boolean
 
 
