@@ -13,8 +13,6 @@ It is designed to interact with a front end component (which allows users to vie
 
 ## 2. Top Questions to Resolve in Review
 
-_List the most important questions you have about your design, or things that you are still debating internally that you might like help working through._
-
 1. Can we search expenses by date? 
 2. Would date need to be a string rather than a ZoneDateTime?
 3. Would status need to be string rather than boolean?
@@ -22,8 +20,6 @@ _List the most important questions you have about your design, or things that yo
 
 
 ## 3. Use Cases
-
-_This is where we work backwards from the customer and define what our customers would like to do (and why). You may also include use cases for yourselves (as developers), or for the organization providing the product to customers._
 
 U1. As a user, I want to be able to view all my expenditures
 
@@ -52,13 +48,7 @@ U11. As a user, I want to be able to view the remaining balance in my budget aft
 
 ## 4. Project Scope
 
-_Clarify which parts of the problem you intend to solve. It helps reviewers know what questions to ask to make sure you are solving for what you say and stops discussions from getting sidetracked by aspects you do not intend to handle in your design._
-
-
-
 ### 4.1. In Scope
-
-_Which parts of the problem defined in Sections 1 and 2 will you solve with this design? This should include the base functionality of your product. What pieces are required for your product to work?_
 
 * Adding, updating, and retrieving/viewing expenditure information
 * Adding, updating, and retrieving/viewing budget information
@@ -67,18 +57,12 @@ _Which parts of the problem defined in Sections 1 and 2 will you solve with this
 
 ### 4.2. Out of Scope
 
-_Based on your problem description in Sections 1 and 2, are there any aspects you are not planning to solve? Do potential expansions or related problems occur to you that you want to explicitly say you are not worrying about now? Feel free to put anything here that you think your team can't accomplish in the unit, but would love to do with more time._
-
 * Displaying expenditure and budget information in a graphical representation 
 * Rolling over remaining budget information for the next term 
 * Calculating balance remaining in budget after expenses  
 
 
-
-
 # 5. Proposed Architecture Overview
-
-_Describe broadly how you are proposing to solve for the requirements you described in Section 2. This may include class diagram(s) showing what components you are planning to build. You should argue why this architecture (organization of components) is reasonable. That is, why it represents a good data flow and a good separation of concerns. Where applicable, argue why this architecture satisfies the stated requirements._
 
 This initial iteration will provide the minimum viable product (MVP) including adding, retrieving, and updating an expense information for the user role.
 
@@ -86,16 +70,12 @@ We will use API Gateway and Lambda to create 6 endpoints (GetExpense, Add/Update
 
 We will store expense and budget information in a table in DynamoDB.
 
-Amazon Elite Budget Service will also provide a web interface for users. A main page providing a variety of options to add, update and view expense and budget information.
-
-
+BudgetMe will also provide a web interface for users. A main page providing a variety of options to add, update and view expense and budget information.
 
 
 # 6. API
 
 ## 6.1. Public Models
-
-_Define the data models your service will expose in its responses via your *`-Model`* package. These will be equivalent to the *`PlaylistModel`* and *`SongModel`* from the Unit 3 project._
 
 ```
 // ExpenseModel
@@ -141,6 +121,7 @@ ZonedDateTime date;
 * Accepts `PUT` requests to `/expense/:expenseId`
 * Accepts data to update an expense including an updated
   expenseName, expenseAmount, tag, and date. Returns the updated expense.
+* Example Data Shape: {"expenseId" : "12345" ,"expenseName" : "Power","expenseAmount" : "100" ,"tag" : "Utilities" ,"date" : "01/23/23"} 
 * If the expenseID or name is not found, will throw a   
   `ExpenseNotFoundException`
 * For security concerns, we will validate the provided expense name does not
@@ -154,6 +135,7 @@ ZonedDateTime date;
 * Accepts data to create a new expenditure which includes the
   expenseId, expenseName, expenseAmount, tag, and date. Returns the new   
   expense.
+* Example Data Shape: {"expenseId" : "12345" ,"expenseName" : "Power","expenseAmount" : "100" ,"tag" : "Utilities" ,"date" : "01/23/23"}
 * For security concerns, we will validate the provided expense name does not
   contain invalid characters: `" ' \`
 * If the expense name contains invalid characters, will throw an
@@ -172,6 +154,7 @@ ZonedDateTime date;
 * Accepts data to create a new budget which includes the
   budgetId, targetAmount,and date. Returns the new   
   budget.
+* Example Data Shape: {"budgetId" : "12345" ,"targetAmount" : "500" ,"status" : "true" ,"date" : "01/23/23"}
 * For security concerns, we will validate the provided budget name does not
   contain invalid characters: `" ' \`
 * If the budget name contains invalid characters, will throw an
@@ -182,6 +165,7 @@ ZonedDateTime date;
 * Accepts `PUT` requests to `/budget/:budgetId`
 * Accepts data to update a budget including an updated
   targetAmount,and date. Returns the updated budget.
+* Example Data Shape: {"budgetId" : "12345" ,"targetAmount" : "500" ,"status" : "true" ,"date" : "01/23/23"}
 * If the budgetID is not found, will throw a   
   `BudgetNotFoundException`
 
@@ -193,12 +177,8 @@ ZonedDateTime date;
   * If the given date is not found, will throw a
     `BudgetNotFoundException`
 
-
-
-
+    
 # 7. Tables
-
-_Define the DynamoDB tables you will need for the data your service will use. It may be helpful to first think of what objects your service will need, then translate that to a table structure, like with the *`Playlist` POJO* versus the `playlists` table in the Unit 3 project._
 
 * ExpenseTable
   expenseId // partition key, string
@@ -215,9 +195,6 @@ _Define the DynamoDB tables you will need for the data your service will use. It
 
 
 # 8. Pages
-
-_Include mock-ups of the web pages you expect to build. These can be as sophisticated as mockups/wireframes using drawing software, or as simple as hand-drawn pictures that represent the key customer-facing components of the pages. It should be clear what the interactions will be on the page, especially where customers enter and submit data. You- may want to accompany the mockups with some description of behaviors of the page (e.g. “When customer submits the submit-dog-photo button, the customer is sent to the doggie detail page”)_
-
 
 https://www.figma.com/file/16rgxBphwAFC0oQ11k2Fd2/Capstone-Project-Design-Board?node-id=0%3A1&t=eguOsCe5g57QWJl5-1
 
