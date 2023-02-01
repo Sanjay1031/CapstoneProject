@@ -100,7 +100,7 @@ _Define the data models your service will expose in its responses via your *`-Mo
 ```
 // ExpenseModel
 
-String expenseId; (Will be date converted to string)
+String expenseId; (Generated UUID or 5/6 digit unique code)
 String expenseName;
 String expenseAmount; 
 String tag;
@@ -108,7 +108,7 @@ ZonedDateTime expenseDate;
 
 // BudgetModel
 
-String budgetId; (Will be date converted to string)
+String budgetId; (Generated UUID or 5/6 digit unique code)
 String targetAmount; 
 Boolean status; 
 ZonedDateTime date;
@@ -201,17 +201,16 @@ ZonedDateTime date;
 _Define the DynamoDB tables you will need for the data your service will use. It may be helpful to first think of what objects your service will need, then translate that to a table structure, like with the *`Playlist` POJO* versus the `playlists` table in the Unit 3 project._
 
 * ExpenseTable
-  expenseId //  string
+  expenseId // partition key, string
   expenseName // string
   expenseAmount // string
   tag // string (GSI Partition Key)
-  date // partition key, string
+  date // string (GSI Partition Key)
 
 * BudgetTable
   budgetId // partition key, string
   targetAmount // string
   date // string
-  status // boolean
 
 
 
