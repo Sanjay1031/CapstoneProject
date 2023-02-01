@@ -121,7 +121,7 @@ ZonedDateTime date;
 * Accepts `PUT` requests to `/expense/:expenseId`
 * Accepts data to update an expense including an updated
   expenseName, expenseAmount, tag, and date. Returns the updated expense.
-* Example Data Shape: {"expenseId" : "12345" ,"expenseName" : "Power","expenseAmount" : "100" ,"tag" : "Utilities" ,"date" : "01/23/23"} 
+* Example Data Shape:`{"expenseId" : "12345" ,"expenseName" : "Power","expenseAmount" : "100" ,"tag" : "Utilities" ,"date" : "01/23/23"}`
 * If the expenseID or name is not found, will throw a   
   `ExpenseNotFoundException`
 * For security concerns, we will validate the provided expense name does not
@@ -135,7 +135,7 @@ ZonedDateTime date;
 * Accepts data to create a new expenditure which includes the
   expenseId, expenseName, expenseAmount, tag, and date. Returns the new   
   expense.
-* Example Data Shape: {"expenseId" : "12345" ,"expenseName" : "Power","expenseAmount" : "100" ,"tag" : "Utilities" ,"date" : "01/23/23"}
+* Example Data Shape: `{"expenseId" : "12345" ,"expenseName" : "Power","expenseAmount" : "100" ,"tag" : "Utilities" ,"date" : "01/23/23"}`
 * For security concerns, we will validate the provided expense name does not
   contain invalid characters: `" ' \`
 * If the expense name contains invalid characters, will throw an
@@ -154,7 +154,7 @@ ZonedDateTime date;
 * Accepts data to create a new budget which includes the
   budgetId, targetAmount,and date. Returns the new   
   budget.
-* Example Data Shape: {"budgetId" : "12345" ,"targetAmount" : "500" ,"status" : "true" ,"date" : "01/23/23"}
+* Example Data Shape: `{"budgetId" : "12345" ,"targetAmount" : "500" ,"status" : "true" ,"date" : "01/23/23"}`
 * For security concerns, we will validate the provided budget name does not
   contain invalid characters: `" ' \`
 * If the budget name contains invalid characters, will throw an
@@ -165,7 +165,7 @@ ZonedDateTime date;
 * Accepts `PUT` requests to `/budget/:budgetId`
 * Accepts data to update a budget including an updated
   targetAmount,and date. Returns the updated budget.
-* Example Data Shape: {"budgetId" : "12345" ,"targetAmount" : "500" ,"status" : "true" ,"date" : "01/23/23"}
+* Example Data Shape:`{"budgetId" : "12345" ,"targetAmount" : "500" ,"status" : "true" ,"date" : "01/23/23"}`
 * If the budgetID is not found, will throw a   
   `BudgetNotFoundException`
 
@@ -180,19 +180,21 @@ ZonedDateTime date;
     
 # 7. Tables
 
-* ExpenseTable
+* ExpenseTable 
+```
   expenseId // partition key, string
   expenseName // string
   expenseAmount // string
   tag // string (GSI Partition Key)
   date // string (GSI Partition Key)
+```
 
 * BudgetTable
+```
   budgetId // partition key, string
   targetAmount // string
   date // string
-
-
+```  
 
 # 8. Pages
 
