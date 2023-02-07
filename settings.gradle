@@ -8,4 +8,4 @@
  */
 
 rootProject.name = 'CapstoneProject'
-include('app', 'list', 'utilities')
+include('app')

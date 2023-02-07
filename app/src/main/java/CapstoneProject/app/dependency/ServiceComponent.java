@@ -1,6 +1,9 @@
 package CapstoneProject.app.dependency;
 
 import CapstoneProject.app.activity.GetExpenseActivity;
+import dagger.Component;
+
+import javax.inject.Singleton;
 
 /**
  * Dagger component for providing dependency injection in the Music Playlist Service.

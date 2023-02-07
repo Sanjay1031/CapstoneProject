@@ -1,6 +1,12 @@
 package CapstoneProject.app.dynamodb;
 
 
+import CapstoneProject.app.dynamodb.models.Expense;
+import CapstoneProject.app.exceptions.ExpenseNotFoundException;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+
+import javax.inject.Inject;
+
 /**
  * Accesses data for an expense using {@link Expense} to represent the model in DynamoDB.
  */
@@ -29,7 +35,7 @@ public class ExpenseDao {
      */
     public Expense getExpense(String expenseId) {
         Expense expense = dynamoDbMapper.load(Expense.class, expenseId);
-        if (null == expense) {
+        if (expense == null) {
             throw new ExpenseNotFoundException(
                     String.format("Could not find expenditure with expenseId '%s'", expense));
         }

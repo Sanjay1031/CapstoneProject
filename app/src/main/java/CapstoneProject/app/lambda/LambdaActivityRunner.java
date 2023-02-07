@@ -1,6 +1,10 @@
 package CapstoneProject.app.lambda;
 
+import CapstoneProject.app.dependency.DaggerServiceComponent;
 import CapstoneProject.app.dependency.ServiceComponent;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.function.BiFunction;
 import java.util.function.Supplier;

@@ -1,12 +1,16 @@
 package CapstoneProject.app.dynamodb;
 
-
-
-
+import CapstoneProject.app.dynamodb.models.Expense;
+import CapstoneProject.app.exceptions.ExpenseNotFoundException;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.mockito.MockitoAnnotations.openMocks;
 
 
 public class ExpenseDaoTest {

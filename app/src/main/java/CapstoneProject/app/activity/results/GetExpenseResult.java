@@ -1,5 +1,8 @@
 package CapstoneProject.app.activity.results;
 
+import CapstoneProject.app.dynamodb.models.Expense;
+import CapstoneProject.app.models.ExpenseModel;
+
 public class GetExpenseResult {
     private final ExpenseModel expense;
 

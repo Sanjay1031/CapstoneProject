@@ -3,7 +3,10 @@ package CapstoneProject.app.lambda;
 import CapstoneProject.app.activity.requests.GetExpenseRequest;
 import CapstoneProject.app.activity.results.GetExpenseResult;
 
-import javax.naming.Context;
+import com.amazonaws.services.lambda.runtime.Context;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class GetExpenseLambda
         extends LambdaActivityRunner<GetExpenseRequest, GetExpenseResult>

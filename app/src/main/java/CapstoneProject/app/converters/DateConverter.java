@@ -1,5 +1,7 @@
 package CapstoneProject.app.converters;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverter;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
