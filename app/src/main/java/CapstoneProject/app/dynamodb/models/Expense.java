@@ -12,7 +12,7 @@ import java.util.Objects;
  * Represents a record in the expenditures table.
  * Previously AlbumDAO
  */
-@DynamoDBTable(tableName = "expenditures")
+@DynamoDBTable(tableName = "Expenditures")
 public class Expense {
     public static final String TAG_GSI = "TagIdIndex";
     public static final String DATE_GSI = "DateIndex";

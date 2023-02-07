@@ -11,7 +11,7 @@ import java.util.Objects;
  * Represents a record in the budgets table.
  * Previously PlaylistDAO
  */
-@DynamoDBTable(tableName = "budgets")
+@DynamoDBTable(tableName = "Budgets")
 public class Budget {
     private String budgetId;
     private String targetAmount;
