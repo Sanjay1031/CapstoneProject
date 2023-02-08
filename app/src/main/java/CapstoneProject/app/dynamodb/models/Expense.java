@@ -1,9 +1,7 @@
 package CapstoneProject.app.dynamodb.models;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBIndexHashKey;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import CapstoneProject.app.converters.DateConverter;
+import com.amazonaws.services.dynamodbv2.datamodeling.*;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -60,6 +58,7 @@ public class Expense {
     }
     @DynamoDBIndexHashKey(globalSecondaryIndexName = DATE_GSI)
     @DynamoDBAttribute(attributeName = "date")
+    @DynamoDBTypeConverted(converter = DateConverter.class)
     public LocalDate getDate() {
         return date;
     }
