@@ -2,7 +2,11 @@ package CapstoneProject.app.activity.results;
 
 import CapstoneProject.app.dynamodb.models.Expense;
 import CapstoneProject.app.models.ExpenseModel;
-
+/**
+ * Implementation of the GetExpenseResult for BudgetMe GetExpense API.
+ *
+ * This API allows the user to get one of their saved expenditures.
+ */
 public class GetExpenseResult {
     private final ExpenseModel expense;
 

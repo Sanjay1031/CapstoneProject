@@ -1,0 +1,59 @@
+{
+  "Expenditures": [
+    {
+      "PutRequest": {
+        "Item": {
+          "expenseId": { "S": "00001" },
+          "expenseAmount": { "S": "100" },
+          "expenseName": { "S": "Power Bill" },
+          "tag": { "S": "Utilities" },
+          "date": { "S": "2023-02-08" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "expenseId": { "S": "00002" },
+          "expenseAmount": { "S": "200" },
+          "expenseName": { "S": "Water Bill" },
+          "tag": { "S": "Utilities" },
+          "date": { "S": "2023-02-07" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "expenseId": { "S": "00003" },
+          "expenseAmount": { "S": "500" },
+          "expenseName": { "S": "Groceries" },
+          "tag": { "S": "Food" },
+          "date": { "S": "2023-02-03" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "expenseId": { "S": "00004" },
+          "expenseAmount": { "S": "50" },
+          "expenseName": { "S": "Lent money to friend" },
+          "tag": { "S": "Loan" },
+          "date": { "S": "2023-02-05" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "expenseId": { "S": "00005" },
+          "expenseAmount": { "S": "10" },
+          "expenseName": { "S": "Fast Food" },
+          "tag": { "S": "Food" },
+          "date": { "S": "2023-02-03" }
+        }
+      }
+    }
+  ]
+}

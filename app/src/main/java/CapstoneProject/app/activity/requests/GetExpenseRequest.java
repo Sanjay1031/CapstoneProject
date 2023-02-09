@@ -1,5 +1,10 @@
 package CapstoneProject.app.activity.requests;
 
+/**
+ * Implementation of the GetExpenseRequest for BudgetMe GetExpense API.
+ *
+ * This API allows the user to get one of their saved expenditures.
+ */
 public class GetExpenseRequest {
     private final String expenseId;
 
