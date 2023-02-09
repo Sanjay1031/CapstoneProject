@@ -218,7 +218,7 @@ Resources:
   #-----------------------------------------------------
   # Lambda Functions Configuration
   #-----------------------------------------------------
-
+#TODO: replace architecture from arm64 back to x86-64 before deployment to AWS
   GetExpenseLambda:
     Type: AWS::Serverless::Function
     Properties:

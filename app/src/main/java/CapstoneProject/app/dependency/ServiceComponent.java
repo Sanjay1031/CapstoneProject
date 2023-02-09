@@ -1,5 +1,6 @@
 package CapstoneProject.app.dependency;
 
+import CapstoneProject.app.activity.CreateExpenseActivity;
 import CapstoneProject.app.activity.GetExpenseActivity;
 import dagger.Component;
 
@@ -18,6 +19,6 @@ public interface ServiceComponent {
      */
     GetExpenseActivity provideGetExpenseActivity();
 
-
+    CreateExpenseActivity provideCreateExpenseActivity();
 
 }
