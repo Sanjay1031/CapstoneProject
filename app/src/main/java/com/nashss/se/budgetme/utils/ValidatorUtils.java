@@ -42,7 +42,7 @@ public class ValidatorUtils {
      * Static utility method to generate a random, unique employeeID.
      * @return a random 5 digit alphanumeric
      */
-    public static String generateEmployeeId() {
+    public static String generateExpenseId() {
         return RandomStringUtils.randomAlphanumeric(5);
     }
 }

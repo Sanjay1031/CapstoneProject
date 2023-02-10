@@ -3,6 +3,8 @@ package com.nashss.se.budgetme.dynamodb.models;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
+import com.nashss.se.budgetme.converters.DateConverter;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -46,6 +48,7 @@ public class Budget {
     }
 
     @DynamoDBAttribute(attributeName = "date")
+    @DynamoDBTypeConverted(converter = DateConverter.class)
     public LocalDate getDate() {
         return date;
     }

@@ -1,0 +1,49 @@
+{
+  "Budgets": [
+    {
+      "PutRequest": {
+        "Item": {
+          "budgetId": { "S": "B0001" },
+          "targetAmount": { "S": "100" },
+          "date": { "S": "2023-01-08" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "budgetId": { "S": "B0002" },
+          "targetAmount": { "S": "500" },
+          "date": { "S": "2023-01-02" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "budgetId": { "S": "B0003" },
+          "targetAmount": { "S": "300" },
+          "date": { "S": "2023-01-03" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "budgetId": { "S": "B0004" },
+          "targetAmount": { "S": "1100" },
+          "date": { "S": "2023-01-05" }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "budgetId": { "S": "B0015" },
+          "targetAmount": { "S": "4000" },
+          "date": { "S": "2023-01-13" }
+        }
+      }
+    }
+  ]
+}
