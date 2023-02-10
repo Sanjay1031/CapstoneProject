@@ -224,7 +224,7 @@ Resources:
     Properties:
       Role: !GetAtt AccessRole.Arn
       CodeUri: app
-      Handler: CapstoneProject.app.lambda.GetExpenseLambda::handleRequest
+      Handler: com.nashss.se.budgetme.lambda.GetExpenseLambda::handleRequest
       Runtime: java11
       Architectures:
         - arm64
@@ -244,9 +244,9 @@ Resources:
   CreateExpenseLambda:
     Type: AWS::Serverless::Function
     Properties:
-      Role: !GetAtt AccessDynamoDBTablesRole.Arn
+      Role: !GetAtt AccessRole.Arn
       CodeUri: app
-      Handler: CapstoneProject.app.lambda.CreateExpenseLambda::handleRequest
+      Handler: com.nashss.se.budgetme.lambda.CreateExpenseLambda::handleRequest
       Runtime: java11
       Architectures:
         - arm64
