@@ -13,7 +13,7 @@ public class BudgetModel {
 
     private DateConverter converter;
 
-    private BudgetModel(Budget budget) {
+    public BudgetModel(Budget budget) {
         converter = new DateConverter();
         this.budgetId = budget.getBudgetId();
         this.targetAmount = budget.getTargetAmount();
