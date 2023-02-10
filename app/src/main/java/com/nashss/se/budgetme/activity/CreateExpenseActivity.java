@@ -49,7 +49,7 @@ public class CreateExpenseActivity {
         DateConverter converter = new DateConverter();
 
         Expense expense = new Expense();
-        expense.setExpenseId(ValidatorUtils.generateEmployeeId());
+        expense.setExpenseId(ValidatorUtils.generateExpenseId());
         expense.setExpenseName(request.getExpenseName());
         expense.setExpenseAmount(request.getExpenseAmount());
         expense.setTag(request.getTag());
