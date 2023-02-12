@@ -105,7 +105,7 @@ public class UpdateExpenseActivityTest {
             updateExpenseActivity.handleRequest(request);
             fail("Expected InvalidAttributeValueException to be thrown");
         } catch (InvalidAttributeValueException e) {
-            verify(metricsPublisher).addCount(MetricsConstants.UPDATEEXPENSE_INVALIDATTRIBUTECHANGE_COUNT, 1);
+            verify(metricsPublisher).addCount(MetricsConstants.UPDATEBUDGET_INVALIDATTRIBUTEVALUE_COUNT, 1);
         }
 
     }

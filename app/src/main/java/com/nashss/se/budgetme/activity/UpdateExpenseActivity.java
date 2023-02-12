@@ -83,7 +83,7 @@ public class UpdateExpenseActivity {
      * @param isInvalidAttributeValue indicates whether InvalidAttributeValueException is thrown
      */
     private void publishExceptionMetrics(final boolean isInvalidAttributeValue) {
-        metricsPublisher.addCount(MetricsConstants.UPDATEEXPENSE_INVALIDATTRIBUTECHANGE_COUNT,
+        metricsPublisher.addCount(MetricsConstants.UPDATEBUDGET_INVALIDATTRIBUTEVALUE_COUNT,
                 isInvalidAttributeValue ? 1 : 0);
     }
 
