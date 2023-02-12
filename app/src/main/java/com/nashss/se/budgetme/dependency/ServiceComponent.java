@@ -1,9 +1,6 @@
 package com.nashss.se.budgetme.dependency;
 
-import com.nashss.se.budgetme.activity.CreateBudgetActivity;
-import com.nashss.se.budgetme.activity.CreateExpenseActivity;
-import com.nashss.se.budgetme.activity.GetBudgetActivity;
-import com.nashss.se.budgetme.activity.GetExpenseActivity;
+import com.nashss.se.budgetme.activity.*;
 import dagger.Component;
 
 import javax.inject.Singleton;
@@ -35,8 +32,14 @@ public interface ServiceComponent {
 
     /**
      * Provides the relevant activity.
-     * @return CreateExpenseActivity
+     * @return CreateBudgetActivity
      */
     CreateBudgetActivity provideCreateBudgetActivity();
+
+    /**
+     * Provides the relevant activity.
+     * @return UpdateExpenseActivity
+     */
+    UpdateExpenseActivity provideUpdateExpenseActivity();
 
 }
