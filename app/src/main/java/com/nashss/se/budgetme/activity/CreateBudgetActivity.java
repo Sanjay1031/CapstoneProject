@@ -35,7 +35,7 @@ public class CreateBudgetActivity {
      * <p>
      * It then returns the budget.
      * <p>
-     * If budgetName, budgetAmount, or tag are invalid strings,
+     * If targetAmount is an invalid number,
      * this should throw an InvalidAttributeValueException.
      *
      * @param request request object containing the budget's information
