@@ -1,5 +1,6 @@
 package com.nashss.se.budgetme.dependency;
 
+import com.nashss.se.budgetme.activity.CreateBudgetActivity;
 import com.nashss.se.budgetme.activity.CreateExpenseActivity;
 import com.nashss.se.budgetme.activity.GetBudgetActivity;
 import com.nashss.se.budgetme.activity.GetExpenseActivity;
@@ -31,5 +32,11 @@ public interface ServiceComponent {
      * @return CreateExpenseActivity
      */
     CreateExpenseActivity provideCreateExpenseActivity();
+
+    /**
+     * Provides the relevant activity.
+     * @return CreateExpenseActivity
+     */
+    CreateBudgetActivity provideCreateBudgetActivity();
 
 }

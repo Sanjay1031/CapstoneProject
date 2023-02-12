@@ -39,7 +39,7 @@ public class CreateExpenseActivity {
      * this should throw an InvalidAttributeValueException.
      *
      * @param request request object containing the expense's information
-     * @return getExpenseResult result object containing the API defined {@link Expense}
+     * @return CreateExpenseResult result object containing the API defined {@link Expense}
      */
     public CreateExpenseResult handleRequest(CreateExpenseRequest request) {
         log.info("Received Create Expense Request {}", request);
@@ -49,7 +49,7 @@ public class CreateExpenseActivity {
         DateConverter converter = new DateConverter();
 
         Expense expense = new Expense();
-        expense.setExpenseId(ValidatorUtils.generateExpenseId());
+        expense.setExpenseId(ValidatorUtils.generateId());
         expense.setExpenseName(request.getExpenseName());
         expense.setExpenseAmount(request.getExpenseAmount());
         expense.setTag(request.getTag());
@@ -63,11 +63,9 @@ public class CreateExpenseActivity {
     }
 
     /**
-     * Checks the important attributes of a CreateEmployeeRequest for validity.
+     * Checks the important attributes of a CreateExpenseRequest for validity.
      * <p>
-     * This includes required fields and String validation for email.
-     * </p>
-     * @param request the CreateEmployeeRequest to check
+     * @param request the CreateExpenseRequest to check
      */
     private void checkAttributes(CreateExpenseRequest request) {
         if (request.getExpenseName() == null) {
