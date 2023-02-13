@@ -10,12 +10,12 @@ import Authenticator from "./authenticator";
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#Mix-ins
  * https://javascript.info/mixins
   */
-export default class MusicPlaylistClient extends BindingClass {
+export default class BudgetMeClient extends BindingClass {
 
     constructor(props = {}) {
         super();
 
-        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'getPlaylist', 'getPlaylistSongs', 'createPlaylist'];
+        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'getExpense'];
         this.bindClassMethods(methodsToBind, this);
 
         this.authenticator = new Authenticator();;
@@ -77,10 +77,10 @@ export default class MusicPlaylistClient extends BindingClass {
      * @param errorCallback (Optional) A function to execute if the call fails.
      * @returns The playlist's metadata.
      */
-    async getPlaylist(id, errorCallback) {
+    async getExpense(id, errorCallback) {
         try {
-            const response = await this.axiosClient.get(`playlists/${id}`);
-            return response.data.playlist;
+            const response = await this.axiosClient.get(`expenditures/${id}`);
+            return response.data.expense;
         } catch (error) {
             this.handleError(error, errorCallback)
         }
