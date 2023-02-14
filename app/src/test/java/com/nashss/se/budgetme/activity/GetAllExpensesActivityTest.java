@@ -38,6 +38,7 @@ public class GetAllExpensesActivityTest {
         String userId = "userId";
 
         Expense expense = new Expense();
+        expense.setUserId(userId);
         expense.setExpenseId("00043");
         expense.setExpenseName("Food");
         expense.setExpenseAmount("100");
@@ -46,7 +47,7 @@ public class GetAllExpensesActivityTest {
         GetAllExpensesRequest request =
                 GetAllExpensesRequest.builder()
                         .withId(expense.getExpenseId())
-                        .withUserId(userId)
+                        .withUserId(expense.getUserId())
                         .build();
 
         List<Expense> expenseList = new ArrayList<>();

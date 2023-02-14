@@ -39,7 +39,7 @@ public class GetAllExpensesActivity {
     public GetAllExpensesResult handleRequest(final GetAllExpensesRequest getAllExpensesRequest) {
         log.info("Received GetEmployeeRequest {}", getAllExpensesRequest);
 
-        List<Expense> expenseList = expenseDao.getAllExpenses(getAllExpensesRequest.getId());
+        List<Expense> expenseList = expenseDao.getAllExpenses(getAllExpensesRequest.getUserId());
 
         return GetAllExpensesResult.builder()
                 .withExpenseList(expenseList)

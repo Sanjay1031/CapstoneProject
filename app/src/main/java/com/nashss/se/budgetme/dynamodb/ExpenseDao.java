@@ -15,7 +15,6 @@ import java.util.List;
  */
 
 public class ExpenseDao {
-    private static final int PAGE_SIZE = 20;
     private DynamoDBMapper dynamoDbMapper;
 
     /**
