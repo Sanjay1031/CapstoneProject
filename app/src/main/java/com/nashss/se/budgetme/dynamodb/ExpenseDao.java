@@ -1,11 +1,14 @@
 package com.nashss.se.budgetme.dynamodb;
 
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
+import com.amazonaws.services.dynamodbv2.datamodeling.PaginatedScanList;
 import com.nashss.se.budgetme.dynamodb.models.Expense;
 import com.nashss.se.budgetme.exceptions.ExpenseNotFoundException;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 
 import javax.inject.Inject;
+import java.util.List;
 
 /**
  * Accesses data for an expense using {@link Expense} to represent the model in DynamoDB.
@@ -13,7 +16,7 @@ import javax.inject.Inject;
 
 public class ExpenseDao {
     private static final int PAGE_SIZE = 20;
-    private final DynamoDBMapper dynamoDbMapper;
+    private DynamoDBMapper dynamoDbMapper;
 
     /**
      * Instantiates an ExpenseDao object.
@@ -41,6 +44,11 @@ public class ExpenseDao {
         }
 
         return expense;
+    }
+
+    public List<Expense> getAllExpenses(String userId) {
+        DynamoDBScanExpression scanExpression = new DynamoDBScanExpression();
+        return dynamoDbMapper.scan(Expense.class, scanExpression);
     }
     /**
      * Saves (creates or updates) the given expense.
