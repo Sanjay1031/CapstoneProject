@@ -81,11 +81,11 @@ public class CreateExpenseActivity {
             throw new MissingRequiredFieldException("tag is a required field.");
         }
 
-//        if (!ValidatorUtils.isValidString(request.getUserId())) {
-//            throw new InvalidAttributeValueException("User Id \"" +
-//                    request.getExpenseName() +
-//                    "\" contains invalid characters");
-//        }
+        if (!ValidatorUtils.isValidEmail(request.getUserId())) {
+            throw new InvalidAttributeValueException("User Id \"" +
+                    request.getExpenseName() +
+                    "\" contains invalid characters");
+        }
 
         if (!ValidatorUtils.isValidString(request.getExpenseName())) {
             throw new InvalidAttributeValueException("Expense name \"" +
