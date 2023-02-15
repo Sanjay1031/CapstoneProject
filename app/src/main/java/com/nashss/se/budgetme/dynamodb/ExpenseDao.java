@@ -12,7 +12,6 @@ import javax.inject.Inject;
  */
 
 public class ExpenseDao {
-    private static final int PAGE_SIZE = 20;
     private final DynamoDBMapper dynamoDbMapper;
 
     /**

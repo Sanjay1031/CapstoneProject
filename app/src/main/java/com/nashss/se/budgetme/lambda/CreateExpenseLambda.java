@@ -6,11 +6,21 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
 public class CreateExpenseLambda extends LambdaActivityRunner<CreateExpenseRequest, CreateExpenseResult>
-        implements RequestHandler<LambdaRequest<CreateExpenseRequest>, LambdaResponse> {
+        implements RequestHandler<AuthenticatedLambdaRequest<CreateExpenseRequest>, LambdaResponse> {
     @Override
-    public LambdaResponse handleRequest(LambdaRequest<CreateExpenseRequest> input, Context context) {
+    public LambdaResponse handleRequest(AuthenticatedLambdaRequest<CreateExpenseRequest> input, Context context) {
         return super.runActivity(
-                () -> input.fromBody(CreateExpenseRequest.class),
+                () -> {
+                    CreateExpenseRequest unauthenticatedRequest = input.fromBody(CreateExpenseRequest.class);
+                    return input.fromUserClaims(claims ->
+                            CreateExpenseRequest.builder()
+                                    .withUserId(claims.get("email"))
+                                    .withExpenseName(unauthenticatedRequest.getExpenseName())
+                                    .withExpenseAmount(unauthenticatedRequest.getExpenseAmount())
+                                    .withTag(unauthenticatedRequest.getTag())
+                                    .withDate(unauthenticatedRequest.getDate())
+                                    .build());
+                },
                 (request, serviceComponent) ->
                         serviceComponent.provideCreateExpenseActivity().handleRequest(request)
         );
