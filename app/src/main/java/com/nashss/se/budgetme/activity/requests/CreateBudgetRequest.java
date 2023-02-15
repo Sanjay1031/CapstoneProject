@@ -7,20 +7,26 @@ import java.time.LocalDate;
 
 @JsonDeserialize(builder = CreateBudgetRequest.Builder.class)
 public class CreateBudgetRequest {
-
+    private final String userId;
     private final String budgetId;
     private final String targetAmount;
     private final Boolean status;
     private final String date;
 
-    private CreateBudgetRequest(String budgetId,
+    private CreateBudgetRequest(String userId,
+                                 String budgetId,
                                  String targetAmount,
                                  Boolean status,
                                  String date) {
+        this.userId = userId;
         this.budgetId = budgetId;
         this.targetAmount = targetAmount;
         this.status = status;
         this.date = date;
+    }
+
+    public String getUserId() {
+        return userId;
     }
 
     public String getBudgetId() {
@@ -46,12 +52,16 @@ public class CreateBudgetRequest {
 
     @JsonPOJOBuilder
     public static class Builder {
+        private String userId;
         private String budgetId;
         private String targetAmount;
         private Boolean status;
         private String date;
 
-
+        public CreateBudgetRequest.Builder withUserId(String userId) {
+            this.userId = userId;
+            return this;
+        }
         public CreateBudgetRequest.Builder withBudgetId(String budgetId) {
             this.budgetId = budgetId;
             return this;
@@ -73,7 +83,8 @@ public class CreateBudgetRequest {
 
 
         public CreateBudgetRequest build() {
-            return new CreateBudgetRequest(budgetId,
+            return new CreateBudgetRequest(userId,
+                    budgetId,
                     targetAmount,
                     status,
                     date);

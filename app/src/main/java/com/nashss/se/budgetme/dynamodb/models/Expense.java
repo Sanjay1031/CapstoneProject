@@ -14,7 +14,7 @@ import java.util.Objects;
 public class Expense {
     public static final String TAG_GSI = "TagIdIndex";
     public static final String DATE_GSI = "DateIndex";
-    public String userId;
+    private String userId;
     private String expenseId;
     private String expenseAmount;
     private String expenseName;

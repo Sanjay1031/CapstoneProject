@@ -32,6 +32,7 @@ public class CreateExpenseActivityTest {
         openMocks(this);
         createExpenseActivity = new CreateExpenseActivity(expenseDao);
         validRequest = CreateExpenseRequest.builder()
+                .withUserId("blah@mail.com")
                 .withExpenseName("Power Bill")
                 .withExpenseAmount("100")
                 .withTag("Utilities")
@@ -55,6 +56,7 @@ public class CreateExpenseActivityTest {
         // WHEN
         CreateExpenseResult result = createExpenseActivity.handleRequest(validRequest);
         Expense expense = new Expense();
+        expense.setUserId("blah@mail.com");
         expense.setExpenseId(result.getExpenseModel().getExpenseId());
         expense.setExpenseName("Power Bill");
         expense.setExpenseAmount("100");

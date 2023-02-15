@@ -83,7 +83,7 @@ public class CreateExpenseActivity {
 
         if (!ValidatorUtils.isValidEmail(request.getUserId())) {
             throw new InvalidAttributeValueException("User Id \"" +
-                    request.getExpenseName() +
+                    request.getUserId() +
                     "\" contains invalid characters");
         }
 

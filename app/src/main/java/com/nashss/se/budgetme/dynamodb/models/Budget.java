@@ -15,11 +15,20 @@ import java.util.Objects;
  */
 @DynamoDBTable(tableName = "Budgets")
 public class Budget {
+    private String userId;
     private String budgetId;
     private String targetAmount;
 
     private Boolean status;
     private LocalDate date;
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     @DynamoDBHashKey(attributeName = "budgetId")
     public String getBudgetId() {
