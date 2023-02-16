@@ -15,7 +15,7 @@ export default class BudgetMeClient extends BindingClass {
     constructor(props = {}) {
         super();
 
-        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'createExpense'];
+        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'createExpense', 'createBudget'];
         this.bindClassMethods(methodsToBind, this);
 
         this.authenticator = new Authenticator();;
@@ -73,11 +73,10 @@ export default class BudgetMeClient extends BindingClass {
 
 
     /**
-     * Create a new playlist owned by the current user.
-     * @param name The name of the playlist to create.
-     * @param tags Metadata tags to associate with a playlist.
+     * Create a new expense owned by the current user.
+     * @param payload data to associate with an expense.
      * @param errorCallback (Optional) A function to execute if the call fails.
-     * @returns The playlist that has been created.
+     * @returns The expense that has been created.
      */
     async createExpense(payload, errorCallback) {
         try {
@@ -88,6 +87,26 @@ export default class BudgetMeClient extends BindingClass {
                 }
             });
             return response.data.expenseModel;
+        } catch (error) {
+            this.handleError(error, errorCallback)
+        }
+    }
+
+    /**
+     * Create a new budget owned by the current user.
+     * @param payload data to associate with a budget.
+     * @param errorCallback (Optional) A function to execute if the call fails.
+     * @returns The budget that has been created.
+     */
+    async createBudget(payload, errorCallback) {
+        try {
+            const token = await this.getTokenOrThrow("Only authenticated users can create expenses.");
+            const response = await this.axiosClient.post(`budgets`, payload, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return response.data.budgetModel;
         } catch (error) {
             this.handleError(error, errorCallback)
         }

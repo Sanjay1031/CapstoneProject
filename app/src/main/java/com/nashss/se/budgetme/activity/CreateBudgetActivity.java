@@ -49,6 +49,7 @@ public class CreateBudgetActivity {
         DateConverter converter = new DateConverter();
 
         Budget budget = new Budget();
+        budget.setUserId(request.getUserId());
         budget.setBudgetId(ValidatorUtils.generateId());
         budget.setTargetAmount(request.getTargetAmount());
         budget.setStatus(request.getStatus());
@@ -79,6 +80,10 @@ public class CreateBudgetActivity {
                     request.getTargetAmount() +
                     "\" contains invalid characters");
         }
-
+        if (!ValidatorUtils.isValidEmail(request.getUserId())) {
+            throw new InvalidAttributeValueException("User Id \"" +
+                    request.getUserId() +
+                    "\" contains invalid characters");
+        }
     }
 }

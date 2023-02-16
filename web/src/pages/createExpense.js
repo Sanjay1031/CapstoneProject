@@ -9,7 +9,7 @@ import DataStore from '../util/DataStore';
 class CreateExpense extends BindingClass {
     constructor() {
         super();
-        this.bindClassMethods(['mount', 'submit', 'redirectToViewExpenses'], this);
+        this.bindClassMethods(['mount', 'submit', 'redirectToHome'], this);
         this.dataStore = new DataStore();
         this.header = new Header(this.dataStore);
     }
@@ -66,13 +66,13 @@ class CreateExpense extends BindingClass {
         document.getElementById('save-expense').style.background='grey';
         const expense = await this.client.createExpense(payload);
         this.dataStore.set('expense', expense);
-        this.redirectToViewExpenses();
+        this.redirectToHome();
     }
 
     /**
      * When the Expense is updated in the datastore, redirect to the view Expense page.
      */
-    redirectToViewExpenses() {
+    redirectToHome() {
         const expense = this.dataStore.get('expense');
         if (expense) {
             window.location.href = `/index.html`;
