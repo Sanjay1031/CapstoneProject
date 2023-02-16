@@ -53,7 +53,7 @@ public class ExpenseDao {
         Map<String, AttributeValue> valueMap = new HashMap<>();
         valueMap.put(":userExpenses", new AttributeValue().withS(userId));
         DynamoDBScanExpression scanExpression = new DynamoDBScanExpression()
-                .withExpressionAttributeValues(valueMap); 
+                .withExpressionAttributeValues(valueMap);
         return dynamoDbMapper.scan(Expense.class, scanExpression);
     }
     /**
