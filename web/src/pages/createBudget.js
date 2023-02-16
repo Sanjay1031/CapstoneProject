@@ -55,6 +55,7 @@ class CreateBudget extends BindingClass {
         document.getElementById('save-budget').innerHTML = 'Saving Budget...';
         document.getElementById('save-budget').style.background='grey';
         const budget = await this.client.createBudget(payload);
+        console.log("budget1", budget);
         this.dataStore.set('budget', budget);
         this.redirectToHome();
     }
@@ -64,6 +65,7 @@ class CreateBudget extends BindingClass {
      */
     redirectToHome() {
         const budget = this.dataStore.get('budget');
+        console.log("budget2", budget);
         if (budget) {
             window.location.href = `/index.html`;
         }

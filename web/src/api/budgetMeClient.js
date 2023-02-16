@@ -106,7 +106,7 @@ export default class BudgetMeClient extends BindingClass {
                     Authorization: `Bearer ${token}`
                 }
             });
-            return response.data.expenseModel;
+            return response.data.budgetModel;
         } catch (error) {
             this.handleError(error, errorCallback)
         }
