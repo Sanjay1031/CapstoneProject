@@ -45,7 +45,7 @@ public class GetAllExpensesRequest {
         }
 
         public GetAllExpensesRequest build() {
-            return new GetAllExpensesRequest(userId,expenseId);
+            return new GetAllExpensesRequest(expenseId, userId);
         }
     }
 }

@@ -47,7 +47,6 @@ public class GetAllExpensesActivityTest {
         GetAllExpensesRequest request =
                 GetAllExpensesRequest.builder()
                         .withId(expense.getExpenseId())
-                        .withUserId(expense.getUserId())
                         .build();
 
         List<Expense> expenseList = new ArrayList<>();

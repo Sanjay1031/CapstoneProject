@@ -9,6 +9,7 @@ import com.nashss.se.budgetme.exceptions.ExpenseNotFoundException;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,11 +51,18 @@ public class ExpenseDao {
     }
 
     public List<Expense> getAllExpenses(String userId) {
-        Map<String, AttributeValue> valueMap = new HashMap<>();
-        valueMap.put(":userExpenses", new AttributeValue().withS(userId));
-        DynamoDBScanExpression scanExpression = new DynamoDBScanExpression()
-                .withExpressionAttributeValues(valueMap);
-        return dynamoDbMapper.scan(Expense.class, scanExpression);
+//        Map<String, AttributeValue> valueMap = new HashMap<>();
+//        valueMap.put(":userExpenses", new AttributeValue().withS(userId));
+//        DynamoDBScanExpression scanExpression = new DynamoDBScanExpression()
+//                .withExpressionAttributeValues(valueMap);
+//        return dynamoDbMapper.scan(Expense.class, scanExpression);
+        DynamoDBMapper mapper = new DynamoDBMapper(DynamoDbClientProvider.getDynamoDBClient());
+        DynamoDBScanExpression scanExpression = new DynamoDBScanExpression();
+        return mapper.scan(Expense.class, scanExpression);
+
+
+
+
     }
     /**
      * Saves (creates or updates) the given expense.

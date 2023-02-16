@@ -13,6 +13,7 @@ public class GetAllExpensesLambda extends LambdaActivityRunner<GetAllExpensesReq
                 () -> input.fromUserClaims(claims ->
                         GetAllExpensesRequest.builder()
                                 .withUserId(claims.get("email"))
+                                .withId(claims.get("expenseId"))
                                 .build()),
                 (request, serviceComponent) -> serviceComponent.provideGetAllExpensesActivity().handleRequest(request)
         );
