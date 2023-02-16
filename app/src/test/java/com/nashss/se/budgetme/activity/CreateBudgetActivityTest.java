@@ -32,6 +32,7 @@ public class CreateBudgetActivityTest {
         openMocks(this);
         createBudgetActivity = new CreateBudgetActivity(budgetDao);
         validRequest = CreateBudgetRequest.builder()
+                .withUserId("blah@mail.com")
                 .withTargetAmount("100")
                 .withStatus(true)
                 .withDate("2023-01-13")
@@ -54,6 +55,7 @@ public class CreateBudgetActivityTest {
         // WHEN
         CreateBudgetResult result = createBudgetActivity.handleRequest(validRequest);
         Budget budget = new Budget();
+        budget.setUserId("blah@mail.com");
         budget.setBudgetId(result.getBudgetModel().getBudgetId());
         budget.setTargetAmount("100");
         budget.setStatus(true);
