@@ -35,7 +35,7 @@ public class GetAllExpensesActivityTest {
     void handleRequest_expenseFound_expenseListReturnedInResult() {
 
         // GIVEN
-        String userId = "userId";
+        String userId = "blah@mail.com";
 
         Expense expense = new Expense();
         expense.setUserId(userId);

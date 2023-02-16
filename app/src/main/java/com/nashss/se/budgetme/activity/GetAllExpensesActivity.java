@@ -37,7 +37,7 @@ public class GetAllExpensesActivity {
      * @return getExpenseResult result object containing the API defined {@link Expense}
      */
     public GetAllExpensesResult handleRequest(final GetAllExpensesRequest getAllExpensesRequest) {
-        log.info("Received GetEmployeeRequest {}", getAllExpensesRequest);
+        log.info("Received GetExpensesRequest {}", getAllExpensesRequest);
 
         List<Expense> expenseList = expenseDao.getAllExpenses(getAllExpensesRequest.getUserId());
 

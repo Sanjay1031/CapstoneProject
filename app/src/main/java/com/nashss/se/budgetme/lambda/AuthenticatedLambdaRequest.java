@@ -54,3 +54,4 @@ public class AuthenticatedLambdaRequest<T> extends LambdaRequest<T> {
         });
     }
 }
+

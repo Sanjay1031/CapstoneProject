@@ -49,6 +49,7 @@ public class CreateExpenseActivity {
         DateConverter converter = new DateConverter();
 
         Expense expense = new Expense();
+        expense.setUserId(request.getUserId());
         expense.setExpenseId(ValidatorUtils.generateId());
         expense.setExpenseName(request.getExpenseName());
         expense.setExpenseAmount(request.getExpenseAmount());
@@ -78,6 +79,12 @@ public class CreateExpenseActivity {
 
         if (request.getTag() == null) {
             throw new MissingRequiredFieldException("tag is a required field.");
+        }
+
+        if (!ValidatorUtils.isValidEmail(request.getUserId())) {
+            throw new InvalidAttributeValueException("User Id \"" +
+                    request.getExpenseName() +
+                    "\" contains invalid characters");
         }
 
         if (!ValidatorUtils.isValidString(request.getExpenseName())) {
