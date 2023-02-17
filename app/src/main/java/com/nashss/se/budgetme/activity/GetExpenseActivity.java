@@ -43,8 +43,9 @@ public class GetExpenseActivity {
      */
     public GetExpenseResult handleRequest(final GetExpenseRequest getExpenseRequest) {
         log.info("Received GetPlaylistRequest {}", getExpenseRequest);
-        String requestedId = getExpenseRequest.getId();
-        Expense expense = expenseDao.getExpense(requestedId);
+        String requestedExpenseId = getExpenseRequest.getExpenseId();
+        String requestedUserId = getExpenseRequest.getUserId();
+        Expense expense = expenseDao.getExpense(requestedUserId, requestedExpenseId);
 
 
         return GetExpenseResult.builder()
