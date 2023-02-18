@@ -64,12 +64,6 @@ public class ExpenseDao {
                 .withHashKeyValues(expense);
         return dynamoDbMapper.query(Expense.class, queryExpression);
 
-//        Map<String, AttributeValue> valueMap = new HashMap<>();
-//        valueMap.put(":userId", new AttributeValue().withS(userId));
-//        DynamoDBScanExpression scanExpression = new DynamoDBScanExpression()
-//                .withExpressionAttributeValues(valueMap)
-//                .withFilterExpression()
-//        return dynamoDbMapper.scan(Expense.class, scanExpression);
     }
     /**
      * Saves (creates or updates) the given expense.

@@ -44,7 +44,8 @@ public class ExpenseDaoTest {
 //        expense.setExpenseId(expenseID);
 //        expense.setExpenseName("expenseName");
 //        expense.setExpenseAmount("expenseAmount");
-//        when(dynamoDBMapper.load(Expense.class, userId)).thenReturn(expense);
+//        dynamoDBMapper.save(expense);
+//        when(dynamoDBMapper.load(Expense.class, expenseID)).thenReturn(expense);
 //
 //        // WHEN
 //        Expense result = expenseDao.getExpense(userId, expenseID);
