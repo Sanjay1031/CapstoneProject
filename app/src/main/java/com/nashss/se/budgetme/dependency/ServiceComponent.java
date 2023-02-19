@@ -40,7 +40,7 @@ public interface ServiceComponent {
      * Provides the relevant activity.
      * @return UpdateExpenseActivity
      */
-    UpdateExpenseActivity provideUpdateExpenseActivity();
+    //UpdateExpenseActivity provideUpdateExpenseActivity();
 
     /**
      * Provides the relevant activity.

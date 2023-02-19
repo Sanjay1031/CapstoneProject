@@ -27,13 +27,15 @@ public class GetExpenseActivityTest {
     @Test
     public void handleRequest_savedExpenseFound_returnsExpenseModelInResult() {
         // GIVEN
+        String expectedUserId = "blah@mail.com";
         String expectedId = "expectedId";
         String expectedName = "expectedName";
         String expectedAmount = "expectedAmount";
         String expectedTag = "expectedTag";
 
         GetExpenseRequest request = GetExpenseRequest.builder()
-                .withId(expectedId)
+                .withUserId(expectedUserId)
+                .withExpenseId(expectedId)
                 .build();
 
         Expense expense = new Expense();
@@ -42,7 +44,7 @@ public class GetExpenseActivityTest {
         expense.setExpenseAmount(expectedAmount);
         expense.setTag(expectedTag);
 
-        when(expenseDao.getExpense(expectedId)).thenReturn(expense);
+        when(expenseDao.getExpense(expectedUserId,expectedId)).thenReturn(expense);
 
 
 

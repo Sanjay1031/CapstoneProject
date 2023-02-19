@@ -3,6 +3,7 @@
     {
       "PutRequest": {
         "Item": {
+          "userId": { "S": "stummalapalli12@gmail.com" },
           "expenseId": { "S": "00001" },
           "expenseAmount": { "S": "100" },
           "expenseName": { "S": "Power Bill" },
@@ -14,6 +15,7 @@
     {
       "PutRequest": {
         "Item": {
+          "userId": { "S": "stummalapalli12@gmail.com" },
           "expenseId": { "S": "00002" },
           "expenseAmount": { "S": "200" },
           "expenseName": { "S": "Water Bill" },
@@ -25,6 +27,7 @@
     {
       "PutRequest": {
         "Item": {
+          "userId": { "S": "stummalapalli12@gmail.com" },
           "expenseId": { "S": "00003" },
           "expenseAmount": { "S": "500" },
           "expenseName": { "S": "Groceries" },
@@ -36,6 +39,7 @@
     {
       "PutRequest": {
         "Item": {
+          "userId": { "S": "stummalapalli12@gmail.com" },
           "expenseId": { "S": "00004" },
           "expenseAmount": { "S": "50" },
           "expenseName": { "S": "Lent money to friend" },
@@ -47,6 +51,7 @@
     {
       "PutRequest": {
         "Item": {
+          "userId": { "S": "stummalapalli12@gmail.com" },
           "expenseId": { "S": "00005" },
           "expenseAmount": { "S": "10" },
           "expenseName": { "S": "Fast Food" },

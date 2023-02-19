@@ -10,17 +10,18 @@ import org.apache.logging.log4j.Logger;
 
 public class GetExpenseLambda
         extends LambdaActivityRunner<GetExpenseRequest, GetExpenseResult>
-        implements RequestHandler<LambdaRequest<GetExpenseRequest>, LambdaResponse> {
+        implements RequestHandler<AuthenticatedLambdaRequest<GetExpenseRequest>, LambdaResponse> {
 
     private final Logger log = LogManager.getLogger();
 
     @Override
-    public LambdaResponse handleRequest(LambdaRequest<GetExpenseRequest> input, Context context) {
+    public LambdaResponse handleRequest(AuthenticatedLambdaRequest<GetExpenseRequest> input, Context context) {
         log.info("handleRequest");
         return super.runActivity(
-                () -> input.fromPath(path ->
+                () -> input.fromUserClaims(claims ->
                         GetExpenseRequest.builder()
-                                .withId(path.get("expenseId"))
+                                .withUserId(claims.get("email"))
+                                .withExpenseId(claims.get("id"))
                                 .build()),
                 (request, serviceComponent) ->
                         serviceComponent.provideGetExpenseActivity().handleRequest(request)
