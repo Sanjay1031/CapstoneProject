@@ -10,15 +10,19 @@ import java.util.Map;
 import static com.nashss.se.budgetme.utils.NullUtils.ifNull;
 
 public class UpdateExpenseLambda extends LambdaActivityRunner<UpdateExpenseRequest, UpdateExpenseResult>
-        implements RequestHandler<LambdaRequest<UpdateExpenseRequest>, LambdaResponse> {
+        implements RequestHandler<AuthenticatedLambdaRequest<UpdateExpenseRequest>, LambdaResponse> {
+
     @Override
-    public LambdaResponse handleRequest(LambdaRequest<UpdateExpenseRequest> input, Context context) {
+    public LambdaResponse handleRequest(AuthenticatedLambdaRequest<UpdateExpenseRequest> input, Context context) {
         return super.runActivity(
                 () -> {
-                    UpdateExpenseRequest updateExpenseRequest = input.fromBody(UpdateExpenseRequest.class);
+                    UpdateExpenseRequest unauthenticatedRequest = input.fromBody(UpdateExpenseRequest.class);
                     Map<String, String> path = ifNull(input.getPathParameters(), Map.of());
-                    updateExpenseRequest.setPathExpenseId(path.get("expenseId"));
-                    return updateExpenseRequest;
+                    unauthenticatedRequest.setPathExpenseId(path.get("expenseId"));
+                    return input.fromUserClaims(claims ->
+                            UpdateExpenseRequest.builder()
+                                    .withUserId(claims.get("email"))
+                                    .build());
                 },
                 (request, serviceComponent) ->
                         serviceComponent.provideUpdateExpenseActivity().handleRequest(request)
