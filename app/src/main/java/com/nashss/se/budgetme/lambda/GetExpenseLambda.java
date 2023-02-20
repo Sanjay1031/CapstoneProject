@@ -29,6 +29,7 @@ public class GetExpenseLambda
                                 .withUserId(claims.get("email"))
                                 .withExpenseId(expenseRequest.getExpenseId())
                                 .build()),
+
                 (request, serviceComponent) ->
                         serviceComponent.provideGetExpenseActivity().handleRequest(request)
         );

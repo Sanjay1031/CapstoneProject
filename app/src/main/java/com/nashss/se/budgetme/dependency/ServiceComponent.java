@@ -16,8 +16,14 @@ public interface ServiceComponent {
      * Provides the relevant activity.
      * @return GetExpenseActivity
      */
-
     GetExpenseActivity provideGetExpenseActivity();
+
+    /**
+     * Provides the relevant activity.
+     * @return GetAllExpensesActivity
+     */
+    GetAllExpensesActivity provideGetAllExpensesActivity();
+
     /**
      * Provides the relevant activity.
      * @return GetBudgetActivity

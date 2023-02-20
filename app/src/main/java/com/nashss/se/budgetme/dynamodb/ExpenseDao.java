@@ -2,21 +2,20 @@ package com.nashss.se.budgetme.dynamodb;
 
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
-import com.amazonaws.services.dynamodbv2.model.AttributeValue;
+
 import com.nashss.se.budgetme.dynamodb.models.Expense;
 import com.nashss.se.budgetme.exceptions.ExpenseNotFoundException;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 
 import javax.inject.Inject;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Accesses data for an expense using {@link Expense} to represent the model in DynamoDB.
  */
 
 public class ExpenseDao {
+
     private final DynamoDBMapper dynamoDbMapper;
 
     /**
@@ -46,6 +45,15 @@ public class ExpenseDao {
         }
 
         return expense;
+    }
+
+    public List<Expense> getAllExpenses(String userId) {
+        Expense expense = new Expense();
+        expense.setUserId(userId);
+        DynamoDBQueryExpression<Expense> queryExpression = new DynamoDBQueryExpression<Expense>()
+                .withHashKeyValues(expense);
+        return dynamoDbMapper.query(Expense.class, queryExpression);
+
     }
     /**
      * Saves (creates or updates) the given expense.
