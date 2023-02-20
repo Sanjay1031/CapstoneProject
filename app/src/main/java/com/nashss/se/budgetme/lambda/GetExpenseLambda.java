@@ -17,7 +17,7 @@ public class GetExpenseLambda
     @Override
     public LambdaResponse handleRequest(AuthenticatedLambdaRequest<GetExpenseRequest> input, Context context) {
         log.info("handleRequest");
-        
+
         GetExpenseRequest expenseRequest = input.fromPath(path ->
                         GetExpenseRequest.builder()
                         .withExpenseId(path.get("expenseId"))
@@ -28,8 +28,7 @@ public class GetExpenseLambda
                         GetExpenseRequest.builder()
                                 .withUserId(claims.get("email"))
                                 .withExpenseId(expenseRequest.getExpenseId())
-                                .build())
-                ,
+                                .build()),
                 (request, serviceComponent) ->
                         serviceComponent.provideGetExpenseActivity().handleRequest(request)
         );
