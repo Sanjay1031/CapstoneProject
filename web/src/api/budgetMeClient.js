@@ -71,7 +71,26 @@ export default class BudgetMeClient extends BindingClass {
         return await this.authenticator.getUserToken();
     }
 
-
+    /**
+     * Gets the playlist for the given ID.
+     * @param id Unique identifier for a playlist
+     * @param errorCallback (Optional) A function to execute if the call fails.
+     * @returns The playlist's metadata.
+     */
+    async getExpense(id, errorCallback) {
+        try {
+            const token = await this.getTokenOrThrow("Only authenticated users can get their expenses.");
+            const response = await this.axiosClient.get(`expenditures/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            console.log(response.data.expenseList)
+            return response.data.expense;
+        } catch (error) {
+            this.handleError(error, errorCallback)
+        }
+    }
     /**
      * Create a new expense owned by the current user.
      * @param payload data to associate with an expense.
@@ -141,7 +160,6 @@ export default class BudgetMeClient extends BindingClass {
         console.error(error);
 
         const errorFromApi = error?.response?.data?.error_message;
-        
         if (errorFromApi) {
             console.error(errorFromApi)
             error.message = errorFromApi;

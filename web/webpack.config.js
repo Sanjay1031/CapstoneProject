@@ -23,6 +23,7 @@ module.exports = {
     usedExports: true
   },
   entry: {
+    viewExpense: path.resolve(__dirname, 'src', 'pages', 'viewExpense.js'),
     createExpense: path.resolve(__dirname, 'src', 'pages', 'createExpense.js'),
     createBudget: path.resolve(__dirname, 'src', 'pages', 'createBudget.js'),
     indexPage: path.resolve(__dirname, 'src', 'pages', 'indexPage.js'),
