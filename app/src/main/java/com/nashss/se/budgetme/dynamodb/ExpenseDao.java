@@ -1,11 +1,16 @@
 package com.nashss.se.budgetme.dynamodb;
 
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
+import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.nashss.se.budgetme.dynamodb.models.Expense;
 import com.nashss.se.budgetme.exceptions.ExpenseNotFoundException;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 
 import javax.inject.Inject;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Accesses data for an expense using {@link Expense} to represent the model in DynamoDB.
@@ -32,8 +37,9 @@ public class ExpenseDao {
      * @param expenseId The expenseId to look up
      * @return The corresponding expense if found
      */
-    public Expense getExpense(String expenseId) {
-        Expense expense = dynamoDbMapper.load(Expense.class, expenseId);
+    public Expense getExpense(String userId, String expenseId) {
+        Expense expense = dynamoDbMapper.load(Expense.class, userId, expenseId);
+
         if (expense == null) {
             throw new ExpenseNotFoundException(
                     String.format("Could not find expenditure with expenseId '%s'", expense));

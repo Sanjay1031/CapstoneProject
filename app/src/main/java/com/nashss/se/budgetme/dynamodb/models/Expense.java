@@ -20,7 +20,7 @@ public class Expense {
     private String expenseName;
     private String tag;
     private LocalDate date;
-
+    @DynamoDBHashKey(attributeName = "userId")
     public String getUserId() {
         return userId;
     }
@@ -29,7 +29,7 @@ public class Expense {
         this.userId = userId;
     }
 
-    @DynamoDBHashKey(attributeName = "expenseId")
+    @DynamoDBRangeKey(attributeName = "expenseId")
     public String getExpenseId() {
         return expenseId;
     }
