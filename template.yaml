@@ -238,8 +238,6 @@ Resources:
           Properties:
             Path: /expenditures/{expenseId}
             Method: get
-            Auth:
-              Authorizer: 'NONE'
 
   GetBudgetLambda:
     Type: AWS::Serverless::Function
