@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 @JsonDeserialize(builder = UpdateExpenseRequest.Builder.class)
 public class UpdateExpenseRequest {
+    private final String userId;
     private String expenseId;
     /**
      * Uses the pathExpense as our path and makes sure it's the same
@@ -22,19 +23,24 @@ public class UpdateExpenseRequest {
     /**
      * Takes in all the fields to be updated.
      *
-     * @param expenseId takes in the employee's ID.
+     * @param expenseId takes in the expense's ID.
      * @param expenseName takes in the firstName.
      * @param expenseAmount takes in the lastName.
-     * @param tag takes in the jobTitle.
-     * @param date takes in the email.
+     * @param tag takes in the tag.
+     * @param date takes in the date.
      */
-    public UpdateExpenseRequest(String expenseId, String expenseName, String expenseAmount,
+    public UpdateExpenseRequest(String userId, String expenseId, String expenseName, String expenseAmount,
                                  String tag, String date) {
+        this.userId = userId;
         this.expenseId = expenseId;
         this.expenseName = expenseName;
         this.expenseAmount = expenseAmount;
         this.tag = tag;
         this.date = date;
+    }
+
+    public String getUserId() {
+        return userId;
     }
 
     public String getExpenseId() {
@@ -73,6 +79,7 @@ public class UpdateExpenseRequest {
     @Override
     public String toString() {
         return "UpdateExpenseRequest{" +
+                "userId='" + userId + '\'' +
                 "expenseId='" + expenseId + '\'' +
                 ", expenseName='" + expenseName + '\'' +
                 ", expenseAmount='" + expenseAmount + '\'' +
@@ -87,6 +94,7 @@ public class UpdateExpenseRequest {
     }
     @JsonPOJOBuilder
     public static class Builder {
+        private String userId;
 
         private String expenseId;
 
@@ -98,7 +106,10 @@ public class UpdateExpenseRequest {
 
         private String date;
 
-
+        public Builder withUserId(String userId) {
+            this.userId = userId;
+            return this;
+        }
         public Builder withExpenseId(String expenseId) {
             this.expenseId = expenseId;
             return this;
@@ -127,7 +138,7 @@ public class UpdateExpenseRequest {
 
 
         public UpdateExpenseRequest build() {
-            return new UpdateExpenseRequest(expenseId, expenseName, expenseAmount, tag, date);
+            return new UpdateExpenseRequest(userId, expenseId, expenseName, expenseAmount, tag, date);
         }
     }
 }

@@ -6,19 +6,26 @@ package com.nashss.se.budgetme.activity.requests;
  * This API allows the user to get one of their saved expenditures.
  */
 public class GetExpenseRequest {
+    private final String userId;
     private final String expenseId;
 
-    private GetExpenseRequest(String expenseId) {
+    private GetExpenseRequest(String userId, String expenseId) {
+        this.userId = userId;
         this.expenseId = expenseId;
     }
 
-    public String getId() {
+    public String getUserId() {
+        return userId;
+    }
+
+    public String getExpenseId() {
         return expenseId;
     }
 
     @Override
     public String toString() {
         return "GetExpenseRequest{" +
+                "userId='" + userId + '\'' +
                 "expenseId='" + expenseId + '\'' +
                 '}';
     }
@@ -29,15 +36,20 @@ public class GetExpenseRequest {
     }
 
     public static class Builder {
+        private String userId;
         private String expenseId;
+        public Builder withUserId(String userId) {
+            this.userId = userId;
+            return this;
+        }
 
-        public Builder withId(String expenseId) {
+        public Builder withExpenseId(String expenseId) {
             this.expenseId = expenseId;
             return this;
         }
 
         public GetExpenseRequest build() {
-            return new GetExpenseRequest(expenseId);
+            return new GetExpenseRequest(userId, expenseId);
         }
     }
 }

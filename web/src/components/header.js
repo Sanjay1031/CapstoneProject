@@ -13,8 +13,7 @@ export default class Header extends BindingClass {
             'createLoginButton', 'createLoginButton', 'createLogoutButton'
         ];
         this.bindClassMethods(methodsToBind, this);
-
-        this.client = new budgetMeClient();
+        this.client = new BudgetMeClient();
     }
 
     /**
@@ -35,7 +34,7 @@ export default class Header extends BindingClass {
         const homeButton = document.createElement('a');
         homeButton.classList.add('header_home');
         homeButton.href = 'index.html';
-        homeButton.innerText = 'Expenditures';
+        homeButton.innerText = 'BudgetMe';
 
         const siteTitle = document.createElement('div');
         siteTitle.classList.add('site-title');

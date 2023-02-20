@@ -1,4 +1,4 @@
-import EmployeeMgmtClient from '../api/budgetMeClient';
+import BudgetMeClient from '../api/budgetMeClient';
 import Header from '../components/header';
 import BindingClass from "../util/bindingClass";
 import DataStore from "../util/DataStore";
@@ -28,9 +28,9 @@ class ViewExpense extends BindingClass {
 
         const expenseDetail = await this.client.getExpense(expenseId);
         this.dataStore.set('expenseDetail', expenseDetail);
-//        document.getElementById('update-expense').addEventListener('click', async evt => {
-//                            window.location.href = `/update_employee.html?id=${employeeId}`;
-//                          });
+        document.getElementById('update-expense').addEventListener('click', async evt => {
+                            window.location.href = `/update_employee.html?id=${expenseId}`;
+                          });
 
         document.getElementById('exp_loading').innerHTML = "";
     }

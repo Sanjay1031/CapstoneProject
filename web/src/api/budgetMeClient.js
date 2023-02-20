@@ -15,7 +15,7 @@ export default class BudgetMeClient extends BindingClass {
     constructor(props = {}) {
         super();
 
-        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'getExpense'];
+        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'createExpense', 'createBudget', 'getAllExpenses'];
         this.bindClassMethods(methodsToBind, this);
 
         this.authenticator = new Authenticator();;
@@ -79,12 +79,76 @@ export default class BudgetMeClient extends BindingClass {
      */
     async getExpense(id, errorCallback) {
         try {
-            const response = await this.axiosClient.get(`expenditures/${id}`);
+            const token = await this.getTokenOrThrow("Only authenticated users can get their expenses.");
+            const response = await this.axiosClient.get(`expenditures`, id {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                 }
+            });
             return response.data.expense;
         } catch (error) {
             this.handleError(error, errorCallback)
         }
     }
+    /**
+     * Create a new expense owned by the current user.
+     * @param payload data to associate with an expense.
+     * @param errorCallback (Optional) A function to execute if the call fails.
+     * @returns The expense that has been created.
+     */
+    async createExpense(payload, errorCallback) {
+        try {
+            const token = await this.getTokenOrThrow("Only authenticated users can create expenses.");
+            const response = await this.axiosClient.post(`expenditures`, payload, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return response.data.expenseModel;
+        } catch (error) {
+            this.handleError(error, errorCallback)
+        }
+    }
+
+    /**
+     * Create a new budget owned by the current user.
+     * @param payload data to associate with a budget.
+     * @param errorCallback (Optional) A function to execute if the call fails.
+     * @returns The budget that has been created.
+     */
+    async createBudget(payload, errorCallback) {
+        try {
+            const token = await this.getTokenOrThrow("Only authenticated users can create expenses.");
+            const response = await this.axiosClient.post(`budgets`, payload, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return response.data.budgetModel;
+        } catch (error) {
+            this.handleError(error, errorCallback)
+        }
+    }
+
+    /**
+         * Gets all expenses owned by the authenticated user.
+         * @param id userId associated with the expenses.
+         * @param errorCallback (Optional) A function to execute if the call fails.
+         * @returns The expenses for the authenticated user.
+         */
+        async getAllExpenses(errorCallback) {
+            try { 
+                const token = await this.getTokenOrThrow("Only authenticated users can get their expenses.");
+                const response = await this.axiosClient.get(`expenditures`, {
+                    headers: { 
+                        Authorization: `Bearer ${token}`
+                     }
+                });
+                return response.data.expenseList;
+            } catch (error) {
+                this.handleError(error, errorCallback)
+            }
+        }
 
     /**
      * Helper method to log the error and run any error functions.

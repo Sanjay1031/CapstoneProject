@@ -2,31 +2,19 @@
 <html>
 
 <head>
-    <script type="text/javascript" src="assets/searchPlaylists.js"></script>
+    <script type="text/javascript" src="assets/indexPage.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body class="background">
     <header class="header" id="header"></header>
     <div class="card">
-        <h2>Search Playlists</h2>
-        <form class="card-content" id="search-playlists-form">
-            <p class="form-field">
-                <label>Search by name or tag</label>
-                <input type="text" class="validated-field" id="search-criteria" placeholder="smooth-jamz" autofocus>
-                <sub>Search is case-sensitive and tags must match exactly.</sub>
-            </p>
-        </form>
-        <p class="button-group">
-            <a href="#" class="button" id="search-btn">Search</a>
-            <a href="createPlaylist.html" class="button">New Playlist</a>
-        </p>
-    </div>
-    <div class="card hidden" id='search-results-container'>
-        <h3>Results for <span id="search-criteria-display"></span></h3>
-        <div id="search-results-display">
-        </div>
+        <h2> Welcome to BudgetMe,the money saving app! </h2>
+        <h3> Please Login! </h3>
+        <button type="button" id="create-expense" onclick="location.href='createExpense.html';">Create Expense</button>
+        <button type="button" id="create-budget" onclick="location.href='createBudget.html';">Create Budget</button>
+        <button type="button" id="view_expenses" onclick="location.href='viewAllExpenses.html';">View Expenses</button>
     </div>
 </body>
-
 </html>
+

@@ -206,7 +206,7 @@ Resources:
             - Effect: Allow
               Action: dynamodb:*
               Resource: !Sub "arn:aws:dynamodb:${AWS::Region}:${AWS::AccountId}:table/expenditures"
-                
+
         - PolicyName: 'AccessBudgetsTable'
           PolicyDocument:
             Version: '2012-10-17'
@@ -238,8 +238,26 @@ Resources:
           Properties:
             Path: /expenditures/{expenseId}
             Method: get
-            Auth:
-              Authorizer: 'NONE'
+
+  GetAllExpensesLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessRole.Arn
+      CodeUri: app
+      Handler: com.nashss.se.budgetme.lambda.GetAllExpensesLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - arm64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        BudgetMe:
+          Type: Api
+          Properties:
+            Path: /expenditures
+            Method: get
 
   GetBudgetLambda:
     Type: AWS::Serverless::Function
@@ -260,8 +278,6 @@ Resources:
           Properties:
             Path: /budgets/{budgetId}
             Method: get
-            Auth:
-              Authorizer: 'NONE'
 
   CreateExpenseLambda:
     Type: AWS::Serverless::Function
@@ -351,6 +367,8 @@ Resources:
     Type: AWS::DynamoDB::Table
     Properties:
       AttributeDefinitions:
+        - AttributeName: "userId"
+          AttributeType: "S"
         - AttributeName: "expenseId"
           AttributeType: "S"
         - AttributeName: "tag"
@@ -358,8 +376,10 @@ Resources:
         - AttributeName: "date"
           AttributeType: "S"
       KeySchema:
-        - AttributeName: "expenseId"
+        - AttributeName: "userId"
           KeyType: "HASH"
+        - AttributeName: "expenseId"
+          KeyType: "RANGE"
       BillingMode: "PAY_PER_REQUEST"
       TableName: "Expenditures"
       GlobalSecondaryIndexes:

@@ -11,6 +11,9 @@ public class ValidatorUtils {
 
     private static final Pattern INVALID_NUMBER_PATTERN = Pattern.compile("^(0|[1-9]\\d*)(\\.\\d+)?$");
 
+    private static final Pattern EMAIL_CHARACTER_PATTERN =
+            Pattern.compile("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$");
+
 
     /**
      * Static utility method to validate a String.
@@ -35,6 +38,18 @@ public class ValidatorUtils {
             return false;
         } else {
             return INVALID_NUMBER_PATTERN.matcher(number).find();
+        }
+    }
+    /**
+     * Static utility method to validate a user.
+     * @param email the email to check
+     * @return a boolean representing the validity of the string as email
+     */
+    public static boolean isValidEmail(String email) {
+        if (StringUtils.isBlank(email)) {
+            return false;
+        } else {
+            return EMAIL_CHARACTER_PATTERN.matcher(email).find();
         }
     }
 

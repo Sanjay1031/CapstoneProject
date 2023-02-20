@@ -22,7 +22,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #ff7f50;
+    background-color: #7F00FF;
     color:#FFFFFF;
     padding: 4px 20px;
 }
@@ -36,7 +36,7 @@ label{
 }
 
 button {
-   background-color: #ff7f50;
+   background-color: #7F00FF;
     border-radius: 8px;
     border-width: 0;
     color: #FFFFFF;
@@ -126,11 +126,11 @@ li a {
 
 /* Change the link color to #111 (black) on hover */
 li a:hover {
-  background-color: #FF7f50;
+  background-color: #7F00FF;
 }
 
 .active {
-  background-color: #FF7f50;
+  background-color: #7F00FF;
 }
 
 
