@@ -38,16 +38,6 @@ public class ExpenseDao {
      * @return The corresponding expense if found
      */
     public Expense getExpense(String userId, String expenseId) {
-//        Map<String, AttributeValue> valueMap = new HashMap<>();
-//        valueMap.put(":v1", new AttributeValue().withS(userId));
-//        valueMap.put(":v2", new AttributeValue().withS(expenseId));
-//
-//        DynamoDBQueryExpression<Expense> queryExpression = new DynamoDBQueryExpression<Expense>()
-//                .withKeyConditionExpression("userId = :v1 and expenseId = :v2")
-//                .withExpressionAttributeValues(valueMap);
-//
-//        List<Expense> expense = dynamoDbMapper.query(Expense.class, queryExpression);
-
         Expense expense = dynamoDbMapper.load(Expense.class, userId, expenseId);
 
         if (expense == null) {
