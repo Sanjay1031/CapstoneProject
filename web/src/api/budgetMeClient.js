@@ -118,13 +118,13 @@ export default class BudgetMeClient extends BindingClass {
          * @param errorCallback (Optional) A function to execute if the call fails.
          * @returns The expenses for the authenticated user.
          */
-        async getAllExpenses(id, errorCallback) {
-            try {
+        async getAllExpenses(errorCallback) {
+            try { 
                 const token = await this.getTokenOrThrow("Only authenticated users can get their expenses.");
-                const response = await this.axiosClient.get(`expenditures`, id, {
-                    headers: {
+                const response = await this.axiosClient.get(`expenditures`, {
+                    headers: { 
                         Authorization: `Bearer ${token}`
-                    }
+                     }
                 });
                 return response.data.expenseList;
             } catch (error) {
@@ -141,6 +141,7 @@ export default class BudgetMeClient extends BindingClass {
         console.error(error);
 
         const errorFromApi = error?.response?.data?.error_message;
+        
         if (errorFromApi) {
             console.error(errorFromApi)
             error.message = errorFromApi;

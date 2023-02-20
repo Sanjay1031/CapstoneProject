@@ -24,7 +24,6 @@ class ViewAllExpenses extends BindingClass {
     async clientLoaded() {
         document.getElementById('expenses').innerText = "(Loading expenditures...)";
         const id = await this.client.getIdentity();
-
         //Get all employees API
         const expenses = await this.client.getAllExpenses(id.email);
         this.dataStore.set('expenses', expenses);
@@ -48,9 +47,9 @@ class ViewAllExpenses extends BindingClass {
           for (let element of data) {
             let row = table.insertRow();
 
-            row.addEventListener('click', async evt => {
-                        window.location.href = `/view_expense.html?id=${element.expenseId}`;
-                      });
+            // row.addEventListener('click', async evt => {
+            //             window.location.href = `/view_expense.html?id=${element.expenseId}`;
+            //           });
 
             let cell = row.insertCell();
             let text = document.createTextNode(element.expenseId);
