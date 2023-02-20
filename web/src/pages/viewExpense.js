@@ -28,9 +28,9 @@ class ViewExpense extends BindingClass {
 
         const expenseDetail = await this.client.getExpense(expenseId);
         this.dataStore.set('expenseDetail', expenseDetail);
-        document.getElementById('update-expense').addEventListener('click', async evt => {
-                            window.location.href = `/update_employee.html?id=${expenseId}`;
-                          });
+        // document.getElementById('update-expense').addEventListener('click', async evt => {
+        //                     window.location.href = `/update_employee.html?id=${expenseId}`;
+        //                   });
 
         document.getElementById('exp_loading').innerHTML = "";
     }
@@ -40,8 +40,7 @@ class ViewExpense extends BindingClass {
      */
     async mount() {
         this.header.addHeaderToPage();
-        this.header.loadData();
-        this.client = new budgetMeClient();
+        this.client = new BudgetMeClient();
         await this.clientLoaded();
     }
 
@@ -60,7 +59,7 @@ class ViewExpense extends BindingClass {
             document.getElementById('ename').innerHTML = expenseDetail.expenseName;
         }
         if (expenseDetail.expenseAmount){
-            document.getElementById('amount').innerHTML = expenseDetail.amount;
+            document.getElementById('amount').innerHTML = expenseDetail.expenseAmount;
         }
         if (expenseDetail.tag){
             document.getElementById('tag').innerHTML = expenseDetail.tag;

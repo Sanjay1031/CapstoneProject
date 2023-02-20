@@ -80,11 +80,12 @@ export default class BudgetMeClient extends BindingClass {
     async getExpense(id, errorCallback) {
         try {
             const token = await this.getTokenOrThrow("Only authenticated users can get their expenses.");
-            const response = await this.axiosClient.get(`expenditures`, id {
+            const response = await this.axiosClient.get(`expenditures/${id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
-                 }
+                }
             });
+            console.log(response.data.expenseList)
             return response.data.expense;
         } catch (error) {
             this.handleError(error, errorCallback)
