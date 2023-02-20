@@ -46,8 +46,6 @@ public class GetExpenseActivityTest {
 
         when(expenseDao.getExpense(expectedUserId,expectedExpenseId)).thenReturn(expense);
 
-
-
         // WHEN
         GetExpenseResult result = getExpenseActivity.handleRequest(request);
 

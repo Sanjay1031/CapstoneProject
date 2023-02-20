@@ -24,36 +24,36 @@ public class ExpenseDaoTest {
         openMocks(this);
         expenseDao = new ExpenseDao(dynamoDBMapper);
     }
-//    @Test
-//    void getExpense_expenseNotFound_throwsExpenseNotFoundException() {
-//        // GIVEN
-//        String userId = "blah@mail.com";
-//        String nonexistentExpenseId = "NotReal";
-//        when(dynamoDBMapper.load(Expense.class, nonexistentExpenseId)).thenReturn(null);
-//
-//        // WHEN + THEN
-//        assertThrows(ExpenseNotFoundException.class, () -> expenseDao.getExpense(userId,nonexistentExpenseId));
-//    }
-//    @Test
-//    void getExpense_withUserIdAndExpenseId_callsMapperWithPartitionKey() {
-//        // GIVEN
-//        String userId = "blah@mail.com";
-//        String expenseID = "1";
-//        Expense expense = new Expense();
-//        expense.setUserId(userId);
-//        expense.setExpenseId(expenseID);
-//        expense.setExpenseName("expenseName");
-//        expense.setExpenseAmount("expenseAmount");
-//        dynamoDBMapper.save(expense);
-//        when(dynamoDBMapper.load(Expense.class, expenseID)).thenReturn(expense);
-//
-//        // WHEN
-//        Expense result = expenseDao.getExpense(userId, expenseID);
-//
-//        // THEN
-//        assertNotNull(result);
-//        verify(dynamoDBMapper).load(Expense.class, expenseID);
-//        assertEquals(expense, result);
-//    }
+    @Test
+    void getExpense_expenseNotFound_throwsExpenseNotFoundException() {
+        // GIVEN
+        String nonexistentUserId = "notreal@mail.com";
+        String nonexistentExpenseId = "NotReal";
+        when(dynamoDBMapper.load(Expense.class, nonexistentExpenseId)).thenReturn(null);
+
+        // WHEN + THEN
+        assertThrows(ExpenseNotFoundException.class, () -> expenseDao.getExpense(nonexistentUserId,nonexistentExpenseId));
+    }
+    @Test
+    void getExpense_withExpenseId_callsMapperWithPartitionKey() {
+        // GIVEN
+        String userId = "user@mail.com";
+        String expenseID = "1";
+        Expense expense = new Expense();
+        expense.setUserId(userId);
+        expense.setExpenseId(expenseID);
+        expense.setExpenseName("expenseName");
+        expense.setExpenseAmount("expenseAmount");
+        when(dynamoDBMapper.load(Expense.class, userId, expenseID)).thenReturn(expense);
+
+
+        // WHEN
+        Expense result = expenseDao.getExpense(userId,expenseID);
+
+        // THEN
+        assertNotNull(result);
+        verify(dynamoDBMapper).load(Expense.class, userId, expenseID);
+        assertEquals(expense, result);
+    }
 
 }

@@ -17,15 +17,19 @@ public class GetExpenseLambda
     @Override
     public LambdaResponse handleRequest(AuthenticatedLambdaRequest<GetExpenseRequest> input, Context context) {
         log.info("handleRequest");
+
+        GetExpenseRequest expenseRequest = input.fromPath(path ->
+                        GetExpenseRequest.builder()
+                        .withExpenseId(path.get("expenseId"))
+                        .build());
+
         return super.runActivity(
-                () -> {
-                    GetExpenseRequest unauthenticatedRequest = input.fromBody(GetExpenseRequest.class);
-                    return input.fromUserClaims(claims ->
-                            GetExpenseRequest.builder()
-                                    .withUserId(claims.get("email"))
-                                    .withExpenseId(unauthenticatedRequest.getExpenseId())
-                                    .build());
-                },
+                () -> input.fromUserClaims(claims ->
+                        GetExpenseRequest.builder()
+                                .withUserId(claims.get("email"))
+                                .withExpenseId(expenseRequest.getExpenseId())
+                                .build()),
+
                 (request, serviceComponent) ->
                         serviceComponent.provideGetExpenseActivity().handleRequest(request)
         );

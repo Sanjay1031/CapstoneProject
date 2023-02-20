@@ -14,12 +14,12 @@ public class GetExpenseRequest {
         this.expenseId = expenseId;
     }
 
-    public String getExpenseId() {
-        return expenseId;
-    }
-
     public String getUserId() {
         return userId;
+    }
+
+    public String getExpenseId() {
+        return expenseId;
     }
 
     @Override
@@ -42,6 +42,7 @@ public class GetExpenseRequest {
             this.userId = userId;
             return this;
         }
+
         public Builder withExpenseId(String expenseId) {
             this.expenseId = expenseId;
             return this;
