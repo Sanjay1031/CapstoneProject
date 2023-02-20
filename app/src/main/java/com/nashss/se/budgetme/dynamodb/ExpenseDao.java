@@ -48,4 +48,12 @@ public class ExpenseDao {
     public void saveExpense(Expense expense) {
         this.dynamoDbMapper.save(expense);
     }
+
+    public void deleteExpense(String userId, String expenseId) {
+        Expense expense = new Expense();
+        expense.setUserId(userId);
+        expense.setExpenseId(expenseId);
+        dynamoDbMapper.delete(expense);
+    }
+
 }
