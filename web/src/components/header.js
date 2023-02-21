@@ -13,7 +13,6 @@ export default class Header extends BindingClass {
             'createLoginButton', 'createLoginButton', 'createLogoutButton'
         ];
         this.bindClassMethods(methodsToBind, this);
-
         this.client = new BudgetMeClient();
     }
 

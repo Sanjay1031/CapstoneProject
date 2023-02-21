@@ -58,7 +58,7 @@ public class UpdateExpenseActivity {
 
         DateConverter converter = new DateConverter();
 
-        Expense expense = expenseDao.getExpense(updateExpenseRequest.getPathExpenseId());
+        Expense expense = expenseDao.getExpense(updateExpenseRequest.getUserId(), updateExpenseRequest.getPathExpenseId());
         if (updateExpenseRequest.getExpenseName() != null) {
             expense.setExpenseName(updateExpenseRequest.getExpenseName());
         }

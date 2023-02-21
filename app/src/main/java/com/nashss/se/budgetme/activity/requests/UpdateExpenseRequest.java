@@ -5,7 +5,9 @@ import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 @JsonDeserialize(builder = UpdateExpenseRequest.Builder.class)
 public class UpdateExpenseRequest {
 
+
     private String userId;
+
     private String expenseId;
     /**
      * Uses the pathExpense as our path and makes sure it's the same
@@ -24,11 +26,11 @@ public class UpdateExpenseRequest {
     /**
      * Takes in all the fields to be updated.
      *
-     * @param expenseId takes in the employee's ID.
+     * @param expenseId takes in the expense's ID.
      * @param expenseName takes in the firstName.
      * @param expenseAmount takes in the lastName.
-     * @param tag takes in the jobTitle.
-     * @param date takes in the email.
+     * @param tag takes in the tag.
+     * @param date takes in the date.
      */
     public UpdateExpenseRequest(String userId, String expenseId, String expenseName, String expenseAmount,
                                  String tag, String date) {
@@ -80,7 +82,8 @@ public class UpdateExpenseRequest {
     @Override
     public String toString() {
         return "UpdateExpenseRequest{" +
-                "expenseId='" + expenseId + '\'' +
+                "userId='" + userId + '\'' +
+                ", expenseId='" + expenseId + '\'' +
                 ", expenseName='" + expenseName + '\'' +
                 ", expenseAmount='" + expenseAmount + '\'' +
                 ", tag='" + tag + '\'' +

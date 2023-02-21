@@ -38,11 +38,13 @@ public class UpdateExpenseActivityTest {
     @Test
     public void handleRequest_goodRequest_updatesExpenseName() {
         // GIVEN
+        String userId = "blah@mail.com";
         String expenseId = "expenseId";
         String pathExpenseId = "expenseId";
         String expectedExpenseName = "newName";
 
         UpdateExpenseRequest request = UpdateExpenseRequest.builder()
+                .withUserId(userId)
                 .withExpenseId(expenseId)
                 .withExpenseName(expectedExpenseName)
                 .withExpenseAmount("300")
@@ -53,7 +55,7 @@ public class UpdateExpenseActivityTest {
         startingExpense.setExpenseName("oldName");
 
 
-        when(expenseDao.getExpense(expenseId)).thenReturn(startingExpense);
+        when(expenseDao.getExpense(userId, expenseId)).thenReturn(startingExpense);
 
         // WHEN
         UpdateExpenseResult result = updateExpenseActivity.handleRequest(request);
@@ -65,11 +67,13 @@ public class UpdateExpenseActivityTest {
     @Test
     public void handleRequest_goodRequest_updatesTagName() {
         // GIVEN
+        String userId = "blah@mail.com";
         String expenseId = "expenseId";
         String pathExpenseId = "expenseId";
         String expectedTag = "newTag";
 
         UpdateExpenseRequest request = UpdateExpenseRequest.builder()
+                .withUserId(userId)
                 .withExpenseId(expenseId)
                 .withExpenseName("expenseName")
                 .withExpenseAmount("200")
@@ -80,7 +84,7 @@ public class UpdateExpenseActivityTest {
         startingExpense.setTag("oldTag");
 
 
-        when(expenseDao.getExpense(expenseId)).thenReturn(startingExpense);
+        when(expenseDao.getExpense(userId,expenseId)).thenReturn(startingExpense);
 
         // WHEN
         UpdateExpenseResult result = updateExpenseActivity.handleRequest(request);
@@ -113,16 +117,18 @@ public class UpdateExpenseActivityTest {
     @Test
     public void handleRequest_expenseDoesNotExist_throwsExpenseNotFoundException() {
         // GIVEN
+        String userId = "blah@mail.com";
         String expenseId = "expenseId";
         String pathExpenseId = "expenseId";
         UpdateExpenseRequest request = UpdateExpenseRequest.builder()
+                .withUserId(userId)
                 .withExpenseId(expenseId)
                 .withExpenseName("firstName")
                 .withExpenseAmount("100")
                 .withTag("tag")
                 .build();
         request.setPathExpenseId(pathExpenseId);
-        when(expenseDao.getExpense(expenseId)).thenThrow(new ExpenseNotFoundException());
+        when(expenseDao.getExpense(userId, expenseId)).thenThrow(new ExpenseNotFoundException());
 
         // THEN
         assertThrows(ExpenseNotFoundException.class, () -> updateExpenseActivity.handleRequest(request));
@@ -131,9 +137,11 @@ public class UpdateExpenseActivityTest {
     @Test
     public void handleRequest_expenseIDsDoNotMatch_throwsInvalidChangeException() {
         // GIVEN
+        String userId = "blah@mail.com";
         String expenseId = "expen";
         String pathExpenseId = "NotExpen";
         UpdateExpenseRequest request = UpdateExpenseRequest.builder()
+                .withUserId(userId)
                 .withExpenseId(expenseId)
                 .withExpenseName("expenseName")
                 .withExpenseAmount("222")

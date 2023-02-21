@@ -14,13 +14,14 @@ import java.util.Objects;
 public class Expense {
     public static final String TAG_GSI = "TagIdIndex";
     public static final String DATE_GSI = "DateIndex";
+
     private String userId;
     private String expenseId;
     private String expenseAmount;
     private String expenseName;
     private String tag;
     private LocalDate date;
-
+    @DynamoDBHashKey(attributeName = "userId")
     public String getUserId() {
         return userId;
     }
@@ -29,7 +30,7 @@ public class Expense {
         this.userId = userId;
     }
 
-    @DynamoDBHashKey(attributeName = "expenseId")
+    @DynamoDBRangeKey(attributeName = "expenseId")
     public String getExpenseId() {
         return expenseId;
     }
