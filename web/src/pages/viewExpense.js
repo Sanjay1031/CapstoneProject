@@ -28,9 +28,9 @@ class ViewExpense extends BindingClass {
 
         const expenseDetail = await this.client.getExpense(expenseId);
         this.dataStore.set('expenseDetail', expenseDetail);
-        // document.getElementById('update-expense').addEventListener('click', async evt => {
-        //                     window.location.href = `/update_employee.html?id=${expenseId}`;
-        //                   });
+        document.getElementById('update-expense').addEventListener('click', async evt => {
+                             window.location.href = `/updateExpense.html?id=${expenseId}`;
+                           });
 
         document.getElementById('exp_loading').innerHTML = "";
     }

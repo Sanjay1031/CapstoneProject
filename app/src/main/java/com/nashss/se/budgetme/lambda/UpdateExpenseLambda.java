@@ -26,6 +26,7 @@ public class UpdateExpenseLambda extends LambdaActivityRunner<UpdateExpenseReque
                             UpdateExpenseRequest.builder()
                                     .withUserId(claims.get("email"))
                                     .withExpenseId(updateRequest.getExpenseId())
+                                    .withExpenseName(unauthenticatedRequest.getExpenseName())
                                     .withExpenseAmount(unauthenticatedRequest.getExpenseAmount())
                                     .withDate(unauthenticatedRequest.getDate())
                                     .withTag(unauthenticatedRequest.getTag())
