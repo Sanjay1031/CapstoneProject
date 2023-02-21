@@ -4,13 +4,9 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 @JsonDeserialize(builder = UpdateExpenseRequest.Builder.class)
 public class UpdateExpenseRequest {
-    private final String userId;
+    private String userId;
+
     private String expenseId;
-    /**
-     * Uses the pathExpense as our path and makes sure it's the same
-     * expenseID that is trying to be changed.
-     */
-    private String pathExpenseId;
 
     private final String expenseName;
 
@@ -51,14 +47,6 @@ public class UpdateExpenseRequest {
         this.expenseId = expenseId;
     }
 
-    public String getPathExpenseId() {
-        return pathExpenseId;
-    }
-
-    public void setPathExpenseId(String pathExpenseId) {
-        this.pathExpenseId = pathExpenseId;
-    }
-
     public String getExpenseName() {
         return expenseName;
     }
@@ -80,7 +68,7 @@ public class UpdateExpenseRequest {
     public String toString() {
         return "UpdateExpenseRequest{" +
                 "userId='" + userId + '\'' +
-                "expenseId='" + expenseId + '\'' +
+                ", expenseId='" + expenseId + '\'' +
                 ", expenseName='" + expenseName + '\'' +
                 ", expenseAmount='" + expenseAmount + '\'' +
                 ", tag='" + tag + '\'' +
