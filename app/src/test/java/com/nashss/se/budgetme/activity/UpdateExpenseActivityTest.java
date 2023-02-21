@@ -5,7 +5,6 @@ import com.nashss.se.budgetme.activity.results.UpdateExpenseResult;
 import com.nashss.se.budgetme.dynamodb.ExpenseDao;
 import com.nashss.se.budgetme.dynamodb.models.Expense;
 import com.nashss.se.budgetme.exceptions.ExpenseNotFoundException;
-import com.nashss.se.budgetme.exceptions.InvalidAttributeChangeException;
 import com.nashss.se.budgetme.exceptions.InvalidAttributeValueException;
 import com.nashss.se.budgetme.metrics.MetricsConstants;
 import com.nashss.se.budgetme.metrics.MetricsPublisher;
@@ -40,7 +39,6 @@ public class UpdateExpenseActivityTest {
         // GIVEN
         String userId = "blah@mail.com";
         String expenseId = "expenseId";
-        String pathExpenseId = "expenseId";
         String expectedExpenseName = "newName";
 
         UpdateExpenseRequest request = UpdateExpenseRequest.builder()
@@ -50,7 +48,6 @@ public class UpdateExpenseActivityTest {
                 .withExpenseAmount("300")
                 .withTag("tag")
                 .build();
-        request.setPathExpenseId(pathExpenseId);
         Expense startingExpense = new Expense();
         startingExpense.setExpenseName("oldName");
 
@@ -69,7 +66,6 @@ public class UpdateExpenseActivityTest {
         // GIVEN
         String userId = "blah@mail.com";
         String expenseId = "expenseId";
-        String pathExpenseId = "expenseId";
         String expectedTag = "newTag";
 
         UpdateExpenseRequest request = UpdateExpenseRequest.builder()
@@ -79,7 +75,6 @@ public class UpdateExpenseActivityTest {
                 .withExpenseAmount("200")
                 .withTag(expectedTag)
                 .build();
-        request.setPathExpenseId(pathExpenseId);
         Expense startingExpense = new Expense();
         startingExpense.setTag("oldTag");
 
@@ -103,7 +98,6 @@ public class UpdateExpenseActivityTest {
                 .withExpenseAmount("100")
                 .withTag("tag")
                 .build();
-        request.setPathExpenseId("ID");
         // WHEN + THEN
         try {
             updateExpenseActivity.handleRequest(request);
@@ -127,30 +121,10 @@ public class UpdateExpenseActivityTest {
                 .withExpenseAmount("100")
                 .withTag("tag")
                 .build();
-        request.setPathExpenseId(pathExpenseId);
         when(expenseDao.getExpense(userId, expenseId)).thenThrow(new ExpenseNotFoundException());
 
         // THEN
         assertThrows(ExpenseNotFoundException.class, () -> updateExpenseActivity.handleRequest(request));
     }
-
-    @Test
-    public void handleRequest_expenseIDsDoNotMatch_throwsInvalidChangeException() {
-        // GIVEN
-        String userId = "blah@mail.com";
-        String expenseId = "expen";
-        String pathExpenseId = "NotExpen";
-        UpdateExpenseRequest request = UpdateExpenseRequest.builder()
-                .withUserId(userId)
-                .withExpenseId(expenseId)
-                .withExpenseName("expenseName")
-                .withExpenseAmount("222")
-                .withTag("tag")
-                .build();
-        request.setPathExpenseId(pathExpenseId);
-
-        // THEN
-        assertThrows(InvalidAttributeChangeException.class, () -> updateExpenseActivity.handleRequest(request));
-
-    }
+    
 }

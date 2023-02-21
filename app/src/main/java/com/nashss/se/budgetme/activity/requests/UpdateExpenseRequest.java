@@ -13,7 +13,7 @@ public class UpdateExpenseRequest {
      * Uses the pathExpense as our path and makes sure it's the same
      * expenseID that is trying to be changed.
      */
-    private String pathExpenseId;
+//    private String pathExpenseId;
 
     private final String expenseName;
 
@@ -54,13 +54,13 @@ public class UpdateExpenseRequest {
         this.expenseId = expenseId;
     }
 
-    public String getPathExpenseId() {
-        return pathExpenseId;
-    }
-
-    public void setPathExpenseId(String pathExpenseId) {
-        this.pathExpenseId = pathExpenseId;
-    }
+//    public String getPathExpenseId() {
+//        return pathExpenseId;
+//    }
+//
+//    public void setPathExpenseId(String pathExpenseId) {
+//        this.pathExpenseId = pathExpenseId;
+//    }
 
     public String getExpenseName() {
         return expenseName;

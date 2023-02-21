@@ -333,7 +333,7 @@ Resources:
         Variables:
           JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
       Events:
-        EmployeeManagementClient:
+        BudgetMe:
           Type: Api
           Properties:
             Path: /expenditures/{expenseId}
@@ -353,7 +353,7 @@ Resources:
         Variables:
           JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
       Events:
-        EmployeeManagementClient:
+        BudgetMe:
           Type: Api
           Properties:
             Path: /budgets/{budgetId}
