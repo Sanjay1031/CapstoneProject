@@ -126,5 +126,5 @@ public class UpdateExpenseActivityTest {
         // THEN
         assertThrows(ExpenseNotFoundException.class, () -> updateExpenseActivity.handleRequest(request));
     }
-    
+
 }
