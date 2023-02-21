@@ -31,7 +31,6 @@ class CreateExpense extends BindingClass {
     async submit() {
         const nameRegex = new RegExp('[^a-zA-Z\\s-\'.]');
         const numberRegex = new RegExp('^\d+(\.\d{1,2})?$'); //^(0|[1-9]\d*)(\.\d+)?$
-        const phoneRegex = new RegExp('\\D');
 
         const expenseName = document.getElementById('expenseName').value;
         const expenseAmount = document.getElementById('expenseAmount').value;
