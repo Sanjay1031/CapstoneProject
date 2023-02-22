@@ -69,7 +69,7 @@ public class ExpenseDaoTest {
         when(dynamoDBMapper.load(Expense.class, userId, expenseID)).thenReturn(expense);
 
         // WHEN
-        expenseDao.deleteExpense(userId, expenseID);
+        expenseDao.deleteExpense(expense);
 
         // THEN
         verify(dynamoDBMapper).delete(expense);

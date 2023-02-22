@@ -12,7 +12,7 @@ class ViewExpense extends BindingClass {
 
     constructor() {
         super();
-        this.bindClassMethods(['clientLoaded', 'mount', 'displayExpenseDetails' ], this);
+        this.bindClassMethods(['clientLoaded', 'mount', 'displayExpenseDetails', 'deleteExpenseFromTable' ], this);
         this.dataStore = new DataStore();
         this.dataStore.addChangeListener(this.displayExpenseDetails);
         this.header = new Header(this.dataStore);
@@ -68,6 +68,23 @@ class ViewExpense extends BindingClass {
             document.getElementById('date').innerHTML = expenseDetail.date;
         }
  }
+
+    async deleteExpenseFromTable() {
+        
+        if(confirm("Are you sure you want to delete this expense?") == true) {
+            const urlParams = new URLSearchParams(window.location.search); 
+            const expenseId = urlParams.get('id'); 
+
+            document.getElementById('delete-expense').disabled = true; 
+            document.getElementById('delete-expense').value = 'Deleting Expense...';
+            document.getElementById('delete-expense').style.background = 'grey'; 
+
+            const expense = await this.client.deleteExpense(expenseId); 
+            if(expense) {
+                window.location.href = '/viewAllExpenses.html'; 
+            }
+        }
+    }
 
 
 }

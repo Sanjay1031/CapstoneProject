@@ -359,6 +359,26 @@ Resources:
             Path: /budgets/{budgetId}
             Method: put
 
+  DeleteExpenseLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Role: !GetAtt AccessRole.Arn
+      CodeUri: app
+      Handler: com.nashss.se.budgetme.lambda.DeleteExpenseLambda::handleRequest
+      Runtime: java11
+      Architectures:
+        - arm64
+      MemorySize: 512
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+      Events:
+        BudgetMe:
+          Type: Api
+          Properties:
+            Path: /expenditures/{expenseId}
+            Method: delete
+
   #-----------------------------------------------------
   # DynamoDB Configuration
   #-----------------------------------------------------

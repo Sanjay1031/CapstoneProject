@@ -15,7 +15,7 @@ export default class BudgetMeClient extends BindingClass {
     constructor(props = {}) {
         super();
 
-        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'createExpense', 'createBudget', 'getAllExpenses', 'updateExpense'];
+        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'createExpense', 'createBudget', 'getAllExpenses', 'updateExpense', 'deleteExpense'];
         this.bindClassMethods(methodsToBind, this);
 
         this.authenticator = new Authenticator();;
@@ -165,6 +165,26 @@ export default class BudgetMeClient extends BindingClass {
                     }
                 });
                 return response.data.expenseModel;
+            } catch (error) {
+                this.handleError(error, errorCallback)
+            }
+        }
+
+        /**
+         * Gets the playlist for the given ID.
+         * @param id Unique identifier for a playlist
+         * @param errorCallback (Optional) A function to execute if the call fails.
+         * @returns The playlist's metadata.
+         */
+        async deleteExpense(id, errorCallback) {
+            try {
+                const token = await this.getTokenOrThrow("Only authenticated users can get their expenses.");
+                const response = await this.axiosClient.delete(`expenditures/${id}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                return response.data.expense;
             } catch (error) {
                 this.handleError(error, errorCallback)
             }
