@@ -15,7 +15,7 @@ export default class BudgetMeClient extends BindingClass {
     constructor(props = {}) {
         super();
 
-        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'createExpense', 'createBudget'];
+        const methodsToBind = ['clientLoaded', 'getIdentity', 'login', 'logout', 'createExpense', 'createBudget', 'getAllExpenses', 'updateExpense'];
         this.bindClassMethods(methodsToBind, this);
 
         this.authenticator = new Authenticator();;
@@ -71,7 +71,25 @@ export default class BudgetMeClient extends BindingClass {
         return await this.authenticator.getUserToken();
     }
 
-
+    /**
+     * Gets the playlist for the given ID.
+     * @param id Unique identifier for a playlist
+     * @param errorCallback (Optional) A function to execute if the call fails.
+     * @returns The playlist's metadata.
+     */
+    async getExpense(id, errorCallback) {
+        try {
+            const token = await this.getTokenOrThrow("Only authenticated users can get their expenses.");
+            const response = await this.axiosClient.get(`expenditures/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            return response.data.expense;
+        } catch (error) {
+            this.handleError(error, errorCallback)
+        }
+    }
     /**
      * Create a new expense owned by the current user.
      * @param payload data to associate with an expense.
@@ -111,6 +129,46 @@ export default class BudgetMeClient extends BindingClass {
             this.handleError(error, errorCallback)
         }
     }
+
+         /**
+         * Gets all expenses owned by the authenticated user.
+         * @param id userId associated with the expenses.
+         * @param errorCallback (Optional) A function to execute if the call fails.
+         * @returns The expenses for the authenticated user.
+         */
+        async getAllExpenses(errorCallback) {
+            try { 
+                const token = await this.getTokenOrThrow("Only authenticated users can get their expenses.");
+                const response = await this.axiosClient.get(`expenditures`, {
+                    headers: { 
+                        Authorization: `Bearer ${token}`
+                     }
+                });
+                return response.data.expenseList;
+            } catch (error) {
+                this.handleError(error, errorCallback)
+            }
+        }
+
+        /**
+         * Gets the playlist for the given ID.
+         * @param id Unique identifier for a playlist
+         * @param errorCallback (Optional) A function to execute if the call fails.
+         * @returns The playlist's metadata.
+         */
+        async updateExpense(payload, errorCallback) {
+            try {
+                const token = await this.getTokenOrThrow("Only authenticated users can get their expenses.");
+                const response = await this.axiosClient.put(`expenditures/${payload.expenseId}`, payload, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                return response.data.expenseModel;
+            } catch (error) {
+                this.handleError(error, errorCallback)
+            }
+        }
 
     /**
      * Helper method to log the error and run any error functions.

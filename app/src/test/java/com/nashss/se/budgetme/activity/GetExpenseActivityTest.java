@@ -27,30 +27,30 @@ public class GetExpenseActivityTest {
     @Test
     public void handleRequest_savedExpenseFound_returnsExpenseModelInResult() {
         // GIVEN
-        String expectedId = "expectedId";
+        String expectedUserId = "blah@mail.com";
+        String expectedExpenseId = "expectedId";
         String expectedName = "expectedName";
         String expectedAmount = "expectedAmount";
         String expectedTag = "expectedTag";
 
         GetExpenseRequest request = GetExpenseRequest.builder()
-                .withId(expectedId)
+                .withUserId(expectedUserId)
+                .withExpenseId(expectedExpenseId)
                 .build();
 
         Expense expense = new Expense();
-        expense.setExpenseId(expectedId);
+        expense.setExpenseId(expectedExpenseId);
         expense.setExpenseName(expectedName);
         expense.setExpenseAmount(expectedAmount);
         expense.setTag(expectedTag);
 
-        when(expenseDao.getExpense(expectedId)).thenReturn(expense);
-
-
+        when(expenseDao.getExpense(expectedUserId,expectedExpenseId)).thenReturn(expense);
 
         // WHEN
         GetExpenseResult result = getExpenseActivity.handleRequest(request);
 
         // THEN
-        assertEquals(expectedId, result.getExpense().getExpenseId());
+        assertEquals(expectedExpenseId, result.getExpense().getExpenseId());
         assertEquals(expectedName, result.getExpense().getExpenseName());
         assertEquals(expectedAmount, result.getExpense().getExpenseAmount());
         assertEquals(expectedTag, result.getExpense().getTag());

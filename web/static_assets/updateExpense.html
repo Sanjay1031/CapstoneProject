@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BudgetMe</title>
+    <script type="text/javascript" src="assets/updateExpense.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<header class="header" id="header"></header>
+<div class="card">
+    <h2>Update Expense </h2>
+    <form class="card-content" id="view-expense-form">
+        <p class="form-field">
+            <label class="required">Expense Name</label>
+            <input type="text" required id="expenseName">
+        </p>
+        <p class="form-field">
+            <label class="required">Expense Amount</label>
+            <input type="text" id="expenseAmount" required>
+        </p>
+        <p class="form-field">
+            <label class="required">Tag</label>
+            <input type="text" id="expenseTag" required>
+        </p>
+        <p class="form-field">
+            <label class="required">Date</label>
+            <input type="date" id="expenseDate" required>
+        </p>
+    </form>
+    <button type="button" id="save-expense">Save Expense</button>
+</div>
+</html>

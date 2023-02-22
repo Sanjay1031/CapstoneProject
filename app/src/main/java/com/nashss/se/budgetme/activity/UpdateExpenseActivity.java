@@ -58,7 +58,7 @@ public class UpdateExpenseActivity {
 
         DateConverter converter = new DateConverter();
 
-        Expense expense = expenseDao.getExpense(updateExpenseRequest.getPathExpenseId());
+        Expense expense = expenseDao.getExpense(updateExpenseRequest.getUserId(), updateExpenseRequest.getExpenseId());
         if (updateExpenseRequest.getExpenseName() != null) {
             expense.setExpenseName(updateExpenseRequest.getExpenseName());
         }
@@ -88,10 +88,6 @@ public class UpdateExpenseActivity {
     }
 
     private void checkAttributes(UpdateExpenseRequest request) {
-        if (request.getExpenseId() != null &&
-                !request.getExpenseId().equals(request.getPathExpenseId())) {
-            throw new InvalidAttributeChangeException("Expense's ID can't be changed");
-        }
 
         if (!ValidatorUtils.isValidString(request.getExpenseName()) &&
                 request.getExpenseName() != null) {
