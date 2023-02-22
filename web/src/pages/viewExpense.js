@@ -15,6 +15,7 @@ class ViewExpense extends BindingClass {
         this.bindClassMethods(['clientLoaded', 'mount', 'displayExpenseDetails', 'deleteExpenseFromTable' ], this);
         this.dataStore = new DataStore();
         this.dataStore.addChangeListener(this.displayExpenseDetails);
+        document.getElementById('delete-expense').addEventListener('click', this.deleteExpenseFromTable);
         this.header = new Header(this.dataStore);
     }
 
@@ -70,7 +71,7 @@ class ViewExpense extends BindingClass {
  }
 
     async deleteExpenseFromTable() {
-        
+
         if(confirm("Are you sure you want to delete this expense?") == true) {
             const urlParams = new URLSearchParams(window.location.search); 
             const expenseId = urlParams.get('id'); 
