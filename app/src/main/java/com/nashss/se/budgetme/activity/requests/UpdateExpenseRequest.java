@@ -2,6 +2,10 @@ package com.nashss.se.budgetme.activity.requests;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+
+/**
+ * Request class to handle an UpdateExpenseRequest.
+ */
 @JsonDeserialize(builder = UpdateExpenseRequest.Builder.class)
 public class UpdateExpenseRequest {
     private String userId;
@@ -18,7 +22,8 @@ public class UpdateExpenseRequest {
 
     /**
      * Takes in all the fields to be updated.
-     *
+     * 
+     * @param userId takes in the user's ID. 
      * @param expenseId takes in the expense's ID.
      * @param expenseName takes in the firstName.
      * @param expenseAmount takes in the lastName.

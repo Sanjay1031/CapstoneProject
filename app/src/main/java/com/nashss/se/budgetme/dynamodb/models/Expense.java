@@ -1,6 +1,7 @@
 package com.nashss.se.budgetme.dynamodb.models;
 
 import com.nashss.se.budgetme.converters.DateConverter;
+
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
 
 import java.time.LocalDate;
@@ -10,7 +11,7 @@ import java.util.Objects;
  * Represents a record in the expenditures table.
  * Previously AlbumDAO
  */
-@DynamoDBTable(tableName = "Expenditures")
+@DynamoDBTable(tableName = "expenditures")
 public class Expense {
     public static final String TAG_GSI = "TagIdIndex";
     public static final String DATE_GSI = "DateIndex";

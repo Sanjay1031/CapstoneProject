@@ -3,6 +3,9 @@ package com.nashss.se.budgetme.activity.requests;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
+/**
+ * Request class to handle a CreateExpenseRequest.
+ */
 @JsonDeserialize(builder = CreateExpenseRequest.Builder.class)
 public class CreateExpenseRequest {
     private final String userId;

@@ -2,8 +2,9 @@ package com.nashss.se.budgetme.lambda;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
+
 import com.nashss.se.budgetme.activity.requests.DeleteExpenseRequest;
-import com.nashss.se.budgetme.activity.requests.GetExpenseRequest;
+
 import com.nashss.se.budgetme.activity.results.DeleteExpenseResult;
 
 public class DeleteExpenseLambda extends LambdaActivityRunner<DeleteExpenseRequest, DeleteExpenseResult>

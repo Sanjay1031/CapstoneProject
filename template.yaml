@@ -218,7 +218,7 @@ Resources:
   #-----------------------------------------------------
   # Lambda Functions Configuration
   #-----------------------------------------------------
-#TODO: replace architecture from arm64 back to x86-64 before deployment to AWS
+#TODO: replace architecture from arm64 back to x86_64 before deployment to AWS
   GetExpenseLambda:
     Type: AWS::Serverless::Function
     Properties:
@@ -227,7 +227,7 @@ Resources:
       Handler: com.nashss.se.budgetme.lambda.GetExpenseLambda::handleRequest
       Runtime: java11
       Architectures:
-        - arm64
+        - x86_64
       MemorySize: 512
       Environment:
         Variables:
@@ -247,7 +247,7 @@ Resources:
       Handler: com.nashss.se.budgetme.lambda.GetAllExpensesLambda::handleRequest
       Runtime: java11
       Architectures:
-        - arm64
+        - x86_64
       MemorySize: 512
       Environment:
         Variables:
@@ -267,7 +267,7 @@ Resources:
       Handler: com.nashss.se.budgetme.lambda.GetBudgetLambda::handleRequest
       Runtime: java11
       Architectures:
-        - arm64
+        - x86_64
       MemorySize: 512
       Environment:
         Variables:
@@ -287,7 +287,7 @@ Resources:
       Handler: com.nashss.se.budgetme.lambda.CreateExpenseLambda::handleRequest
       Runtime: java11
       Architectures:
-        - arm64
+        - x86_64
       MemorySize: 512
       Environment:
         Variables:
@@ -307,7 +307,7 @@ Resources:
       Handler: com.nashss.se.budgetme.lambda.CreateBudgetLambda::handleRequest
       Runtime: java11
       Architectures:
-        - arm64
+        - x86_64
       MemorySize: 512
       Environment:
         Variables:
@@ -327,7 +327,7 @@ Resources:
       Handler: com.nashss.se.budgetme.lambda.UpdateExpenseLambda::handleRequest
       Runtime: java11
       Architectures:
-        - arm64
+        - x86_64
       MemorySize: 512
       Environment:
         Variables:
@@ -347,7 +347,7 @@ Resources:
       Handler: com.nashss.se.budgetme.lambda.UpdateBudgetLambda::handleRequest
       Runtime: java11
       Architectures:
-        - arm64
+        - x86_64
       MemorySize: 512
       Environment:
         Variables:
@@ -367,7 +367,7 @@ Resources:
       Handler: com.nashss.se.budgetme.lambda.DeleteExpenseLambda::handleRequest
       Runtime: java11
       Architectures:
-        - arm64
+        - x86_64
       MemorySize: 512
       Environment:
         Variables:
@@ -401,7 +401,7 @@ Resources:
         - AttributeName: "expenseId"
           KeyType: "RANGE"
       BillingMode: "PAY_PER_REQUEST"
-      TableName: "Expenditures"
+      TableName: "expenditures"
       GlobalSecondaryIndexes:
         - IndexName: "DateIndex"
           KeySchema:
@@ -431,7 +431,7 @@ Resources:
         - AttributeName: "budgetId"
           KeyType: "HASH"
       BillingMode: "PAY_PER_REQUEST"
-      TableName: "Budgets"
+      TableName: "budgets"
 
 #-----------------------------------------------------
 # The outputs defined below will be printed

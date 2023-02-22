@@ -1,6 +1,7 @@
 package com.nashss.se.budgetme.dependency;
 
 import com.nashss.se.budgetme.activity.*;
+
 import dagger.Component;
 
 import javax.inject.Singleton;

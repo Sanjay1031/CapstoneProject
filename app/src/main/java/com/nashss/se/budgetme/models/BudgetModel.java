@@ -5,6 +5,9 @@ import com.nashss.se.budgetme.dynamodb.models.Budget;
 
 import java.util.Objects;
 
+/**
+ * Model for a Budget Object.
+ */
 public class BudgetModel {
     private String budgetId;
     private String targetAmount;
@@ -13,6 +16,9 @@ public class BudgetModel {
 
     private DateConverter converter;
 
+    /**
+     * Instantiates a BudgetModel
+     */
     public BudgetModel(Budget budget) {
         converter = new DateConverter();
         this.budgetId = budget.getBudgetId();

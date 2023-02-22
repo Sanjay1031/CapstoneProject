@@ -3,6 +3,9 @@ package com.nashss.se.budgetme.activity.results;
 import com.nashss.se.budgetme.dynamodb.models.Expense;
 import com.nashss.se.budgetme.models.ExpenseModel;
 
+/**
+ * Result class to handle a CreateExpenseResult.
+ */
 public class CreateExpenseResult {
     private final ExpenseModel expenseModel;
 

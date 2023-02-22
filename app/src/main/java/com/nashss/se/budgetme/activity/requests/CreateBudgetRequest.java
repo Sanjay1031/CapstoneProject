@@ -3,8 +3,9 @@ package com.nashss.se.budgetme.activity.requests;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
-import java.time.LocalDate;
-
+/**
+ * Request class to handle a CreateBudgetRequest.
+ */
 @JsonDeserialize(builder = CreateBudgetRequest.Builder.class)
 public class CreateBudgetRequest {
     private final String userId;

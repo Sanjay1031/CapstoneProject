@@ -5,6 +5,9 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Converter to convert LocalDate into String.
+ */
 public class DateConverter implements DynamoDBTypeConverter<String, LocalDate> {
     @Override
     public String convert(LocalDate object) {
