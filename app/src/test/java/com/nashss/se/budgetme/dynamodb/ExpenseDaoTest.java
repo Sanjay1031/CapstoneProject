@@ -56,4 +56,23 @@ public class ExpenseDaoTest {
         assertEquals(expense, result);
     }
 
+    @Test
+    void deleteExpense_withUserIdAndExpenseId_deletesExpense() {
+        // GIVEN
+        String userId = "blah@mail.com";
+        String expenseID = "1";
+        Expense expense = new Expense();
+        expense.setUserId(userId);
+        expense.setExpenseId(expenseID);
+        expense.setExpenseName("expenseName");
+        expense.setExpenseAmount("expenseAmount");
+        when(dynamoDBMapper.load(Expense.class, userId, expenseID)).thenReturn(expense);
+
+        // WHEN
+        expenseDao.deleteExpense(expense);
+
+        // THEN
+        verify(dynamoDBMapper).delete(expense);
+    }
+
 }

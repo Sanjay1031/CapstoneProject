@@ -54,4 +54,10 @@ public interface ServiceComponent {
      */
     UpdateBudgetActivity provideUpdateBudgetActivity();
 
+    /**
+     * Provides the relevant activity.
+     * @return UpdateExpenseActivity
+     */
+    DeleteExpenseActivity provideDeleteExpenseActivity();
+
 }

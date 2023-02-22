@@ -3,6 +3,7 @@ package com.nashss.se.budgetme.dynamodb;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 
+import com.amazonaws.services.dynamodbv2.document.Table;
 import com.nashss.se.budgetme.dynamodb.models.Expense;
 import com.nashss.se.budgetme.exceptions.ExpenseNotFoundException;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
@@ -62,4 +63,11 @@ public class ExpenseDao {
     public void saveExpense(Expense expense) {
         this.dynamoDbMapper.save(expense);
     }
+
+    public void deleteExpense(Expense expense) {
+        expense.setExpenseId(expense.getExpenseId());
+        expense.setUserId(expense.getUserId());
+        dynamoDbMapper.delete(expense);
+    }
+
 }
