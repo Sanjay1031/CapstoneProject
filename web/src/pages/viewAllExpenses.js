@@ -61,7 +61,7 @@ class ViewAllExpenses extends BindingClass {
 
 
             cell = row.insertCell();
-            text = document.createTextNode(element.expenseAmount);
+            text = document.createTextNode(`$ ${element.expenseAmount}`);
             cell.appendChild(text);
 
 
