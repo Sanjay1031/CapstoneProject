@@ -227,7 +227,7 @@ Resources:
       Handler: com.nashss.se.budgetme.lambda.GetExpenseLambda::handleRequest
       Runtime: java11
       Architectures:
-        - arm64
+        - x86_64
       MemorySize: 512
       Environment:
         Variables:
@@ -247,7 +247,7 @@ Resources:
       Handler: com.nashss.se.budgetme.lambda.GetAllExpensesLambda::handleRequest
       Runtime: java11
       Architectures:
-        - arm64
+        - x86_64
       MemorySize: 512
       Environment:
         Variables:
@@ -267,7 +267,7 @@ Resources:
       Handler: com.nashss.se.budgetme.lambda.GetBudgetLambda::handleRequest
       Runtime: java11
       Architectures:
-        - arm64
+        - x86_64
       MemorySize: 512
       Environment:
         Variables:
@@ -287,7 +287,7 @@ Resources:
       Handler: com.nashss.se.budgetme.lambda.CreateExpenseLambda::handleRequest
       Runtime: java11
       Architectures:
-        - arm64
+        - x86_64
       MemorySize: 512
       Environment:
         Variables:
@@ -307,7 +307,7 @@ Resources:
       Handler: com.nashss.se.budgetme.lambda.CreateBudgetLambda::handleRequest
       Runtime: java11
       Architectures:
-        - arm64
+        - x86_64
       MemorySize: 512
       Environment:
         Variables:
@@ -327,7 +327,7 @@ Resources:
       Handler: com.nashss.se.budgetme.lambda.UpdateExpenseLambda::handleRequest
       Runtime: java11
       Architectures:
-        - arm64
+        - x86_64
       MemorySize: 512
       Environment:
         Variables:
@@ -347,7 +347,7 @@ Resources:
       Handler: com.nashss.se.budgetme.lambda.UpdateBudgetLambda::handleRequest
       Runtime: java11
       Architectures:
-        - arm64
+        - x86_64
       MemorySize: 512
       Environment:
         Variables:
@@ -367,7 +367,7 @@ Resources:
       Handler: com.nashss.se.budgetme.lambda.DeleteExpenseLambda::handleRequest
       Runtime: java11
       Architectures:
-        - arm64
+        - x86_64
       MemorySize: 512
       Environment:
         Variables:

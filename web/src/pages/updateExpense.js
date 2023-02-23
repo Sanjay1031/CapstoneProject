@@ -83,10 +83,12 @@ class ViewExpense extends BindingClass {
              alert ("The expense amount you entered has invalid characters");
              return;
             }
-         if (!nameRegex.test(expenseName)) {
-             alert("The first name you entered has invalid characters");
+
+         if (!nameRegex.test(tag)) {
+             alert("The tag you entered has invalid characters");
              return;
-         }
+            }
+
          if ((date.substring(0,4) < 1900) || (date.substring(0,4) > 2100) || (date.length != 10)) {
              alert("The date you entered is invalid.");
              return;
