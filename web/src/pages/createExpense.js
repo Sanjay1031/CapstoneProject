@@ -29,27 +29,24 @@ class CreateExpense extends BindingClass {
      * Expense.
      */
     async submit() {
-        const nameRegex = new RegExp('[^a-zA-Z\\s-\'.]');
-        const numberRegex = new RegExp('^\d+(\.\d{1,2})?$'); //^(0|[1-9]\d*)(\.\d+)?$
+        const nameRegex = new RegExp("^[a-zA-Z]+$");
+        const numberRegex = new RegExp('^[0-9]+$');
 
-        const expenseName = document.getElementById('expenseName').value;
-        const expenseAmount = document.getElementById('expenseAmount').value;
-        const tag = document.getElementById('tag').value;
+        
+        const expenseName = document.getElementById('expenseName').value.trim();
+        const expenseAmount = document.getElementById('expenseAmount').value.trim();
+        const tag = document.getElementById('tag').value.trim();
         const date = document.getElementById('date').value;
-
+        
         if (!expenseName || !expenseAmount || !tag || !date) {
             alert("Please fill in all required fields");
             return;
         }
-        if (nameRegex.test(expenseName)) {
-            alert("The expense name you entered has invalid characters");
-            return;
-        }
-        if (numberRegex.test(expenseAmount)) {
+        if (!numberRegex.test(expenseAmount)) {
             alert ("The expense amount you entered has invalid characters");
             return;
         }
-        if (nameRegex.test(tag)) {
+        if (!nameRegex.test(tag)) {
             alert("The tag you entered has invalid characters");
             return;
         }

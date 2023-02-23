@@ -8,13 +8,27 @@
 
 <body class="background">
     <header class="header" id="header"></header>
-    <div class="card">
-        <h2> Welcome to BudgetMe,the money saving app! </h2>
-        <h3> Please Login! </h3>
-        <button type="button" id="create-expense" onclick="location.href='createExpense.html';">Create Expense</button>
-        <button type="button" id="create-budget" onclick="location.href='createBudget.html';">Create Budget</button>
-        <button type="button" id="view_expenses" onclick="location.href='viewAllExpenses.html';">View Expenses</button>
+    <div class="container">
+        <div class="card">
+            <div class="text-center">
+                <h2 class="text-center"> Welcome to BudgetMe, the money saving app! </h2>
+            <div id="please-login" />
+            </div>
+            <div class="button-group">
+                <div class="button-container" id="button-container">
+                    <button type="button" id="create-expense" onclick="location.href='createExpense.html';">Create
+                        Expense
+                    </button>
+                    <button type="button" id="create-budget" onclick="location.href='createBudget.html';">Create
+                        Budget
+                    </button>
+                    <button type="button" id="view_expenses" onclick="location.href='viewAllExpenses.html';">View
+                        Expenses
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
-</html>
 
+</html>

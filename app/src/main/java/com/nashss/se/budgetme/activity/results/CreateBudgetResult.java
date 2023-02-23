@@ -3,6 +3,9 @@ package com.nashss.se.budgetme.activity.results;
 import com.nashss.se.budgetme.dynamodb.models.Budget;
 import com.nashss.se.budgetme.models.BudgetModel;
 
+/**
+ * Result class to handle a CreateBudgetResult.
+ */
 public class CreateBudgetResult {
     private final BudgetModel budgetModel;
 

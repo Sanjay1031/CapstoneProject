@@ -3,6 +3,7 @@ package com.nashss.se.budgetme.dynamodb;
 import com.nashss.se.budgetme.dynamodb.models.Budget;
 import com.nashss.se.budgetme.exceptions.BudgetNotFoundException;
 import com.nashss.se.budgetme.metrics.MetricsPublisher;
+
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 
 import javax.inject.Inject;
@@ -52,53 +53,4 @@ public class BudgetDao {
         this.dynamoDbMapper.save(budget);
 
     }
-
-//    /**
-//     * Perform a search (via a "scan") of the playlist table for playlists matching the given criteria.
-//     *
-//     * Both "playlistName" and "tags" attributes are searched.
-//     * The criteria are an array of Strings. Each element of the array is search individually.
-//     * ALL elements of the criteria array must appear in the playlistName or the tags (or both).
-//     * Searches are CASE SENSITIVE.
-//     *
-//     * @param criteria an array of String containing search criteria.
-//     * @return a List of Playlist objects that match the search criteria.
-//     */
-//    public List<Budget> searchPlaylists(String[] criteria) {
-//        DynamoDBScanExpression dynamoDBScanExpression = new DynamoDBScanExpression();
-//
-//        if (criteria.length > 0) {
-//            Map<String, AttributeValue> valueMap = new HashMap<>();
-//            String valueMapNamePrefix = ":c";
-//
-//            StringBuilder nameFilterExpression = new StringBuilder();
-//            StringBuilder tagsFilterExpression = new StringBuilder();
-//
-//            for (int i = 0; i < criteria.length; i++) {
-//                valueMap.put(valueMapNamePrefix + i,
-//                        new AttributeValue().withS(criteria[i]));
-//                nameFilterExpression.append(
-//                        filterExpressionPart("playlistName", valueMapNamePrefix, i));
-//                tagsFilterExpression.append(
-//                        filterExpressionPart("tags", valueMapNamePrefix, i));
-//            }
-//
-//            dynamoDBScanExpression.setExpressionAttributeValues(valueMap);
-//            dynamoDBScanExpression.setFilterExpression(
-//                    "(" + nameFilterExpression + ") or (" + tagsFilterExpression + ")");
-//        }
-//
-//        return this.dynamoDbMapper.scan(Budget.class, dynamoDBScanExpression);
-//    }
-//
-//    private StringBuilder filterExpressionPart(String target, String valueMapNamePrefix, int position) {
-//        String possiblyAnd = position == 0 ? "" : "and ";
-//        return new StringBuilder()
-//                .append(possiblyAnd)
-//                .append("contains(")
-//                .append(target)
-//                .append(", ")
-//                .append(valueMapNamePrefix).append(position)
-//                .append(") ");
-//    }
 }

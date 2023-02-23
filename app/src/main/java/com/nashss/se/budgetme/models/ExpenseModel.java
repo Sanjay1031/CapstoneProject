@@ -5,6 +5,9 @@ import com.nashss.se.budgetme.dynamodb.models.Expense;
 
 import java.util.Objects;
 
+/**
+ * Model for an Expense Object.
+ */
 public class ExpenseModel {
     private String expenseId;
     private String expenseName;
@@ -14,6 +17,9 @@ public class ExpenseModel {
 
     private DateConverter converter;
 
+    /**
+     * Instantiates an Expense Model.
+     */
     public ExpenseModel(Expense expense) {
         converter = new DateConverter();
         this.expenseId = expense.getExpenseId();

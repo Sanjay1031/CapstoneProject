@@ -6,9 +6,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static com.nashss.se.budgetme.utils.NullUtils.ifNotNull;
-
-
 /**
  * Various helpful utilities for converting collections.
  */

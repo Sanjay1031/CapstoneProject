@@ -68,23 +68,23 @@ class ViewExpense extends BindingClass {
 
     async update() {
 
-         const nameRegex = new RegExp('[^a-zA-Z\\s-\'.]');
-         const numberRegex = new RegExp('^\d+(\.\d{1,2})?$');
+         const nameRegex = new RegExp("^[a-zA-Z]+$");
+         const numberRegex = new RegExp('^[0-9]+$');
          const expenseId = this.dataStore.get('expenseId');
-         const expenseName = document.getElementById('expenseName').value;
-         const expenseAmount = document.getElementById('expenseAmount').value;
-         const tag = document.getElementById('expenseTag').value;
+         const expenseName = document.getElementById('expenseName').value.trim();
+         const expenseAmount = document.getElementById('expenseAmount').value.trim();
+         const tag = document.getElementById('expenseTag').value.trim();
          const date = document.getElementById('expenseDate').value;
           if (!expenseName || !expenseAmount || !tag || !date) {
              alert("Please fill in all required fields");
              return;
          }
-         if (nameRegex.test(expenseName)) {
-             alert("The first name you entered has invalid characters");
-             return;
-         }
-         if (numberRegex.test(expenseAmount)) {
+         if (!numberRegex.test(expenseAmount)) {
              alert ("The expense amount you entered has invalid characters");
+             return;
+            }
+         if (!nameRegex.test(expenseName)) {
+             alert("The first name you entered has invalid characters");
              return;
          }
          if ((date.substring(0,4) < 1900) || (date.substring(0,4) > 2100) || (date.length != 10)) {

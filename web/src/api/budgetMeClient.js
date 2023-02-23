@@ -144,6 +144,7 @@ export default class BudgetMeClient extends BindingClass {
                         Authorization: `Bearer ${token}`
                      }
                 });
+                console.log(response.data)
                 return response.data.expenseList;
             } catch (error) {
                 this.handleError(error, errorCallback)

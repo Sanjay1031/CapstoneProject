@@ -11,10 +11,17 @@ import com.nashss.se.budgetme.metrics.MetricsConstants;
 import com.nashss.se.budgetme.metrics.MetricsPublisher;
 import com.nashss.se.budgetme.models.BudgetModel;
 import com.nashss.se.budgetme.utils.ValidatorUtils;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
+
+/**
+ * Implementation of the UpdateBudgetActivity for BudgetMe UpdateBudget API.
+ *
+ * This API allows the user to update a budget.
+ */
 
 public class UpdateBudgetActivity {
 

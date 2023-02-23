@@ -1,5 +1,8 @@
 package com.nashss.se.budgetme.activity.requests;
 
+/**
+ * Request class to handle a DeleteExpenseRequest.
+ */
 public class DeleteExpenseRequest {
     private final String userId;
 

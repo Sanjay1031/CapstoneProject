@@ -218,7 +218,7 @@ Resources:
   #-----------------------------------------------------
   # Lambda Functions Configuration
   #-----------------------------------------------------
-#TODO: replace architecture from arm64 back to x86-64 before deployment to AWS
+#TODO: replace architecture from arm64 back to x86_64 before deployment to AWS
   GetExpenseLambda:
     Type: AWS::Serverless::Function
     Properties:
@@ -401,7 +401,7 @@ Resources:
         - AttributeName: "expenseId"
           KeyType: "RANGE"
       BillingMode: "PAY_PER_REQUEST"
-      TableName: "Expenditures"
+      TableName: "expenditures"
       GlobalSecondaryIndexes:
         - IndexName: "DateIndex"
           KeySchema:
@@ -431,7 +431,7 @@ Resources:
         - AttributeName: "budgetId"
           KeyType: "HASH"
       BillingMode: "PAY_PER_REQUEST"
-      TableName: "Budgets"
+      TableName: "budgets"
 
 #-----------------------------------------------------
 # The outputs defined below will be printed

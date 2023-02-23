@@ -1,27 +1,38 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>BudgetMe</title>
     <script type="text/javascript" src="assets/createBudget.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <header class="header" id="header"></header>
-<div class="card">
-    <h2>Create Budget </h2>
-    <form class="card-content" id="create-budget-form">
-        <p class="form-field">
-            <label class="required">Target Amount</label>
-            <input type="text" id="targetAmount" required>
-        </p>
-        <p class="form-field">
-            <label>Status</label>
-            <input type="text" id="status">
-        </p>
-        <p class="form-field">
-            <label class="required">Date</label>
-            <input type="date" id="date" required>
-        </p>
-    </form>
-    <button type="button" id="save-budget">Save Budget</button>
+<div class="form-container">
+    <div class="card">
+        <h2>Create Budget </h2>
+        <form class="card-content" id="create-budget-form">
+            <p class="form-field">
+                <label class="required">Target Amount</label>
+                <div class="input-wrap">
+                    <span class="currency-code">$</span>
+                    <input type="text" id="targetAmount" class="currency-input-style" required>
+                </div>
+            </p>
+            <p class="form-field">
+                <label>Status</label>
+                <div class="input-wrap">
+                    <input type="text" id="status"  class="input-style">
+                </div>
+            </p>
+            <p class="form-field">
+                <label class="required">Date</label>
+                <div class="input-wrap">
+                    <input type="date" id="date"  class="input-style" required>
+                </div>
+            </p>
+        </form>
+        <button type="button" id="save-budget">Save Budget</button>
+    </div>
 </div>
+
 </html>

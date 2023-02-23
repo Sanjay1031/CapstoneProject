@@ -5,6 +5,9 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.regex.Pattern;
 
+/**
+ * Util class for validation handling 
+ */
 public class ValidatorUtils {
     private static final Pattern INVALID_CHARACTER_PATTERN =
             Pattern.compile("[^a-zA-Z\\s-'.]");

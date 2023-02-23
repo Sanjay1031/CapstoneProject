@@ -4,12 +4,18 @@ import com.nashss.se.budgetme.activity.requests.GetAllExpensesRequest;
 import com.nashss.se.budgetme.activity.results.GetAllExpensesResult;
 import com.nashss.se.budgetme.dynamodb.ExpenseDao;
 import com.nashss.se.budgetme.dynamodb.models.Expense;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.inject.Inject;
-import java.util.Collections;
 import java.util.List;
+import javax.inject.Inject;
+
+/**
+ * Implementation of the GetAllExpensesActivity for BudgetMe GetAllExpenses API.
+ *
+ * This API allows the user to view all their expenses.
+ */
 
 public class GetAllExpensesActivity {
     private final Logger log = LogManager.getLogger();

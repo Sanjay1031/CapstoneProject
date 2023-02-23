@@ -2,6 +2,10 @@ package com.nashss.se.budgetme.activity.requests;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+
+/**
+ * Request class to handle an UpdateBudgetRequest.
+ */
 @JsonDeserialize(builder = UpdateBudgetRequest.Builder.class)
 public class UpdateBudgetRequest {
     private String budgetId;

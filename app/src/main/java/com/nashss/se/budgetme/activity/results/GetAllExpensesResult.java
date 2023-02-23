@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Result class to handle a GetAllExpensesResult.
+ */
 public class GetAllExpensesResult {
     private final List<ExpenseModel> expenseList;
 

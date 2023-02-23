@@ -1,15 +1,16 @@
 package com.nashss.se.budgetme.dynamodb;
 
-
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 
-import com.amazonaws.services.dynamodbv2.document.Table;
 import com.nashss.se.budgetme.dynamodb.models.Expense;
+
 import com.nashss.se.budgetme.exceptions.ExpenseNotFoundException;
+
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 
-import javax.inject.Inject;
 import java.util.List;
+import javax.inject.Inject;
+
 
 /**
  * Accesses data for an expense using {@link Expense} to represent the model in DynamoDB.
@@ -34,6 +35,7 @@ public class ExpenseDao {
      *
      * If not found, throws AlbumTrackNotFoundException.
      *
+     * @param userId The userId to look up
      * @param expenseId The expenseId to look up
      * @return The corresponding expense if found
      */
@@ -48,6 +50,12 @@ public class ExpenseDao {
         return expense;
     }
 
+    /**
+     * Retrieves all Expenditures by userId.
+     *
+     * @param userId The userId to look up
+     * @return The corresponding expense if found
+     */
     public List<Expense> getAllExpenses(String userId) {
         Expense expense = new Expense();
         expense.setUserId(userId);
@@ -56,6 +64,7 @@ public class ExpenseDao {
         return dynamoDbMapper.query(Expense.class, queryExpression);
 
     }
+
     /**
      * Saves (creates or updates) the given expense.
      * @param expense The expense to save
@@ -64,6 +73,10 @@ public class ExpenseDao {
         this.dynamoDbMapper.save(expense);
     }
 
+    /**
+     * Deletes the given expense.
+     * @param expense The expense to delete
+     */
     public void deleteExpense(Expense expense) {
         expense.setExpenseId(expense.getExpenseId());
         expense.setUserId(expense.getUserId());

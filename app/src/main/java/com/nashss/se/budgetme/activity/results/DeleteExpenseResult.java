@@ -3,6 +3,9 @@ package com.nashss.se.budgetme.activity.results;
 import com.nashss.se.budgetme.dynamodb.models.Expense;
 import com.nashss.se.budgetme.models.ExpenseModel;
 
+/**
+ * Result class to handle a DeleteExpenseResult.
+ */
 public class DeleteExpenseResult {
     private final ExpenseModel expense;
 

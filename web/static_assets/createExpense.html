@@ -1,31 +1,45 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>BudgetMe</title>
     <script type="text/javascript" src="assets/createExpense.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <header class="header" id="header"></header>
-<div class="card">
-    <h2>Create Expense </h2>
-    <form class="card-content" id="create-employee-form">
-        <p class="form-field">
-            <label class="required">Expense Name</label>
-            <input type="text" required id="expenseName">
-        </p>
-        <p class="form-field">
-            <label class="required">Expense Amount</label>
-            <input type="text" id="expenseAmount" required>
-        </p>
-        <p class="form-field">
-            <label class="required">Tag</label>
-            <input type="text" id="tag" required>
-        </p>
-        <p class="form-field">
-            <label class="required">Date</label>
-            <input type="date" id="date" required>
-        </p>
-    </form>
-    <button type="button" id="save-expense">Save Expense</button>
+
+<div class="form-container">
+    <div class="card">
+        <h2>Create Expense </h2>
+        <form class="card-content" id="create-employee-form">
+            <p class="form-field">
+                <label class="required">Expense Name</label>
+                <div class="input-wrap">
+                    <input class="input-style" type="text" required id="expenseName">
+                </div>
+            </p>
+            <p class="form-field">
+                <label class="required">Expense Amount</label>
+                <div class="input-wrap">
+                    <span class="currency-code">$</span>
+                    <input class="currency-input-style" type="text" id="expenseAmount" required>
+                </div>
+            </p>
+            <p class="form-field">
+                <label class="required">Tag</label>
+                <div class="input-wrap">
+                    <input class="input-style" type="text" id="tag" required>
+                </div>
+            </p>
+            <p class="form-field">
+                <label class="required">Date</label>
+                <div class="input-wrap">
+                    <input class="input-style" type="date" id="date" required>
+                </div>
+            </p>
+        </form>
+        <button type="button" id="save-expense">Save Expense</button>
+    </div>
 </div>
+
 </html>

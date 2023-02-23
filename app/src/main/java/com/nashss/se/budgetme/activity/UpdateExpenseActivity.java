@@ -5,17 +5,22 @@ import com.nashss.se.budgetme.activity.results.UpdateExpenseResult;
 import com.nashss.se.budgetme.converters.DateConverter;
 import com.nashss.se.budgetme.dynamodb.ExpenseDao;
 import com.nashss.se.budgetme.dynamodb.models.Expense;
-import com.nashss.se.budgetme.exceptions.InvalidAttributeChangeException;
 import com.nashss.se.budgetme.exceptions.InvalidAttributeValueException;
 import com.nashss.se.budgetme.metrics.MetricsConstants;
 import com.nashss.se.budgetme.metrics.MetricsPublisher;
 import com.nashss.se.budgetme.models.ExpenseModel;
 import com.nashss.se.budgetme.utils.ValidatorUtils;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
 
+/**
+ * Implementation of the UpdateExpenseActivity for BudgetMe UpdateExpense API.
+ *
+ * This API allows the user to update an expense.
+ */
 public class UpdateExpenseActivity {
 
     private final Logger log = LogManager.getLogger();

@@ -1,5 +1,8 @@
 package com.nashss.se.budgetme.exceptions;
 
+/**
+ * Exception to throw when a required field is missing or empty
+ */
 public class MissingRequiredFieldException extends RuntimeException {
 
     /**

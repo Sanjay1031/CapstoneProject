@@ -8,6 +8,9 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * Lambda function to handle GetExpenseAPI.
+ */
 public class GetExpenseLambda
         extends LambdaActivityRunner<GetExpenseRequest, GetExpenseResult>
         implements RequestHandler<AuthenticatedLambdaRequest<GetExpenseRequest>, LambdaResponse> {

@@ -3,7 +3,6 @@ package com.nashss.se.budgetme.activity.results;
 import com.nashss.se.budgetme.dynamodb.models.Budget;
 import com.nashss.se.budgetme.models.BudgetModel;
 
-
 /**
  * Implementation of the GetBudgetActivity for BudgetMe GetBudget API.
  *

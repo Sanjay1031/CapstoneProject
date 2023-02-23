@@ -2,13 +2,18 @@ package com.nashss.se.budgetme.lambda;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
+
 import com.nashss.se.budgetme.activity.requests.UpdateBudgetRequest;
+
 import com.nashss.se.budgetme.activity.results.UpdateBudgetResult;
 
 import java.util.Map;
 
 import static com.nashss.se.budgetme.utils.NullUtils.ifNull;
 
+/**
+ * Lambda function to handle UpdateBudgetAPI.
+ */
 public class UpdateBudgetLambda extends LambdaActivityRunner<UpdateBudgetRequest, UpdateBudgetResult>
         implements RequestHandler<LambdaRequest<UpdateBudgetRequest>, LambdaResponse> {
     @Override

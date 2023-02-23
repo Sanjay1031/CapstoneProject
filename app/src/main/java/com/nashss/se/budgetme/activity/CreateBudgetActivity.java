@@ -8,11 +8,17 @@ import com.nashss.se.budgetme.dynamodb.models.Budget;
 import com.nashss.se.budgetme.exceptions.InvalidAttributeValueException;
 import com.nashss.se.budgetme.exceptions.MissingRequiredFieldException;
 import com.nashss.se.budgetme.utils.ValidatorUtils;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
 
+/**
+ * Implementation of the CreateBudgetActivity for BudgetMe CreateBudget API.
+ *
+ * This API allows the user to create a new budget.
+ */
 public class CreateBudgetActivity {
     private final Logger log;
 

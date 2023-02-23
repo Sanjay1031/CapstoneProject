@@ -8,11 +8,17 @@ import com.nashss.se.budgetme.dynamodb.models.Expense;
 import com.nashss.se.budgetme.exceptions.InvalidAttributeValueException;
 import com.nashss.se.budgetme.exceptions.MissingRequiredFieldException;
 import com.nashss.se.budgetme.utils.ValidatorUtils;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.inject.Inject;
 
+/**
+ * Implementation of the CreateExpenseActivity for BudgetMe CreateExpense API.
+ *
+ * This API allows the user to create a new expense.
+ */
 public class CreateExpenseActivity {
     private final Logger log;
 
@@ -79,12 +85,6 @@ public class CreateExpenseActivity {
 
         if (request.getTag() == null) {
             throw new MissingRequiredFieldException("tag is a required field.");
-        }
-
-        if (!ValidatorUtils.isValidEmail(request.getUserId())) {
-            throw new InvalidAttributeValueException("User Id \"" +
-                    request.getUserId() +
-                    "\" contains invalid characters");
         }
 
         if (!ValidatorUtils.isValidString(request.getExpenseName())) {

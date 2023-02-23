@@ -1,10 +1,12 @@
 package com.nashss.se.budgetme.dynamodb.models;
 
+import com.nashss.se.budgetme.converters.DateConverter;
+
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
-import com.nashss.se.budgetme.converters.DateConverter;
+
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -13,7 +15,7 @@ import java.util.Objects;
  * Represents a record in the budgets table.
  * Previously PlaylistDAO
  */
-@DynamoDBTable(tableName = "Budgets")
+@DynamoDBTable(tableName = "budgets")
 public class Budget {
     private String userId;
     private String budgetId;

@@ -1,7 +1,12 @@
 package com.nashss.se.budgetme.activity.requests;
 
+/**
+ * Request class to handle a GetAllExpensesRequest.
+ */
 public class GetAllExpensesRequest {
-
+/**
+ * Instantiates a GetAllExpensesRequest.
+ */
     private final String userId;
 
     public GetAllExpensesRequest(String userId) {

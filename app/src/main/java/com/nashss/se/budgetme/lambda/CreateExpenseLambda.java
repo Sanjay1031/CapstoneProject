@@ -2,9 +2,13 @@ package com.nashss.se.budgetme.lambda;
 
 import com.nashss.se.budgetme.activity.requests.CreateExpenseRequest;
 import com.nashss.se.budgetme.activity.results.CreateExpenseResult;
+
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
+/**
+ * Lambda function to handle CreateExpenseAPI.
+ */
 public class CreateExpenseLambda extends LambdaActivityRunner<CreateExpenseRequest, CreateExpenseResult>
         implements RequestHandler<AuthenticatedLambdaRequest<CreateExpenseRequest>, LambdaResponse> {
     @Override

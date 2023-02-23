@@ -8,6 +8,9 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * Lambda function to handle GetBudgetAPI.
+ */
 public class GetBudgetLambda
         extends LambdaActivityRunner<GetBudgetRequest, GetBudgetResult>
         implements RequestHandler<LambdaRequest<GetBudgetRequest>, LambdaResponse> {
