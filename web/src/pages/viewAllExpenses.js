@@ -40,11 +40,14 @@ class ViewAllExpenses extends BindingClass {
 
     }
 
+    sortData(data) {
+        return data.sort((a, b) => new Date(b.date) - new Date(a.date))
+    }
 
     async generateTable(table, data) {
-
-      if (data.length != 0) {
-          for (let element of data) {
+        const sortedData = this.sortData(data)
+      if (sortedData.length != 0) {
+          for (let element of sortedData) {
             let row = table.insertRow();
 
             row.addEventListener('click', async evt => {
