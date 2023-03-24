@@ -25,4 +25,4 @@
 
 ## Design Details 
 
-* For a detailed look at all the endpoints, tables, and proposed architectures, view the design doc: [Design Doc](https://github.com/Sanjay1031/CapstoneProject/blob/main/design/DesignDoc.md)
+* View the design doc to see a detailed description of all the endpoints, tables, and proposed architecture for the project: [Design Doc](https://github.com/Sanjay1031/CapstoneProject/blob/main/design/DesignDoc.md)
